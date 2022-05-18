@@ -14,80 +14,44 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-        ArrayList<Pedido> pedidos = new ArrayList<>();
-
-        try {
-            URL recursoCSV = ClassLoader.getSystemResource("pedidos.csv");
-            Path caminhoDoArquivo = caminhoDoArquivo = Path.of(recursoCSV.toURI());
-
-            Scanner leitorDeLinhas = new Scanner(caminhoDoArquivo);
-
-            leitorDeLinhas.nextLine();
-
-            int quantidadeDeRegistros = 0;
-            while (leitorDeLinhas.hasNextLine()) {
-                String linha = leitorDeLinhas.nextLine();
-                String[] registro = linha.split(",");
-
-                String categoria = registro[0];
-                String produto = registro[1];
-                BigDecimal preco = new BigDecimal(registro[2]);
-                int quantidade = Integer.parseInt(registro[3]);
-                LocalDate data = LocalDate.parse(registro[4], DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                String cliente = registro[5];
-
-                Pedido pedido = new Pedido(categoria, produto, cliente, preco, quantidade, data);
-                pedidos.add(pedido);
-
-                quantidadeDeRegistros++;
-            }
-        } catch (URISyntaxException e) {
-            throw new RuntimeException("Arquivo pedido.csv não localizado!");
-        } catch (IOException e) {
-            throw new RuntimeException("Erro ao abrir Scanner para processar arquivo!");
-        }
-
-
-        int totalDeProdutosVendidos = 0;
-        int totalDePedidosRealizados = 0;
-        BigDecimal montanteDeVendas = BigDecimal.ZERO;
-        Pedido pedidoMaisBarato = null;
-        Pedido pedidoMaisCaro = null;
-
-        CategoriasProcessadas categoriasProcessadas = new CategoriasProcessadas();
-        int totalDeCategorias = 0;
-
-        for (int i = 0; i < pedidos.size(); i++) {
-            Pedido pedidoAtual = pedidos.get(i);
-
-            if (pedidoAtual == null) {
-                break;
-            }
-
-            if (pedidoMaisBarato == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade()))) < 0) {
-                pedidoMaisBarato = pedidoAtual;
-            }
-
-            if (pedidoMaisCaro == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade()))) > 0) {
-                pedidoMaisCaro = pedidoAtual;
-            }
-
-            montanteDeVendas = montanteDeVendas.add(pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())));
-            totalDeProdutosVendidos += pedidoAtual.getQuantidade();
-            totalDePedidosRealizados++;
-
-            if (!categoriasProcessadas.contains(pedidoAtual.getCategoria())) {
-              totalDeCategorias++;
-              categoriasProcessadas.add(pedidoAtual.getCategoria());
-            }
-        }
+      
+    	String arquivoCSV = "pedidos.csv";
+    	ProcessadorDeCSV processador = new ProcessadorDeCSV();
+    	
+    	List<Pedido> listaDePedidos = ProcessadorDeCSV.listarPedidos(arquivoCSV); 	
+    	List<Pedido> listaDeClientes = ProcessadorDeCSV.listarPedidos(arquivoCSV);	
+    	List<Pedido> listaDeCategorias = ProcessadorDeCSV.listarPedidos(arquivoCSV);
+    	List<Pedido> listaDeLucrativos = ProcessadorDeCSV.listarPedidos(arquivoCSV);
+    	List<Pedido> listaDeProdutos = ProcessadorDeCSV.listarPedidos(arquivoCSV);
+    	
+    	RelatorioSintetico sintetico = new RelatorioSintetico(listaDePedidos);
+    	RelatorioFiel fidelidade = new RelatorioFiel(listaDeClientes);
+    	RelatorioCategoria category = new RelatorioCategoria(listaDeCategorias);
+    	RelatorioLucrativos lucrativo = new RelatorioLucrativos(listaDeLucrativos);
+    	RelatorioProdutos prod = new RelatorioProdutos(listaDeProdutos);
+    	
+    	
+        
 
         System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
-        System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", totalDePedidosRealizados);
-        System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", totalDeProdutosVendidos);
-        System.out.printf("- TOTAL DE CATEGORIAS: %s\n", totalDeCategorias);
-        System.out.printf("- MONTANTE DE VENDAS: %s\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(montanteDeVendas.setScale(2, RoundingMode.HALF_DOWN)));
-        System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisBarato.getProduto());
-        System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisCaro.getProduto());
-    }
+        System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", sintetico.getTotalDePedidosRealizados());
+        System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", sintetico.getTotalDeProdutosVendidos());
+        System.out.printf("- TOTAL DE CATEGORIAS: %s\n", sintetico.getTotalDeCategorias());
+        System.out.printf("- MONTANTE DE VENDAS: %s\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(sintetico.getMontanteDeVendas().setScale(2, RoundingMode.HALF_DOWN)));
+        System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(sintetico.getPedidoMaisBarato().getValorTotal()), sintetico.getPedidoMaisBarato().getProduto());
+        System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(sintetico.getPedidoMaisCaro().getValorTotal()), sintetico.getPedidoMaisCaro().getProduto());
+        System.out.println("############################");
+        System.out.println("#### RELATÓRIO DE CLIENTE FIEL");
+        fidelidade.getClienteMaisFiel().forEach((x, y) -> System.out.printf("\nNOME: %s \nN° De Pedidos: %s\n", x, y.size()));
+        System.out.println("############################");
+        System.out.println("#### RELATÓRIO DE CATEGORIAS");
+        category.getMontanteCategoria().forEach((x, y) -> System.out.printf("\nNOME: %s \nMontante: %s\nQuantidade Vendida: %s\n", x, y,category.quantidadeProdutosPorCategoria.put(x,null)));
+        System.out.println("############################");
+        System.out.println("####RELATORIO PRODUTO MAIS VENDIDO");
+        prod.getQuantidadeProdutosPorVendas().forEach((x, y) -> System.out.printf("\nProduto: %s \nPedidos: %s\n", x, y));
+        System.out.println("############################");
+        System.out.println("####RELATORIO CLIENTE MAIS LUCRATIVO");
+        lucrativo.getClienteLucro().forEach((x, y) -> System.out.printf("\nNOME: %s \nPedidos: %s\nMontante: %s\n", x, y.size(),lucrativo.montanteCliente.put(x,null)));
+
+}
 }

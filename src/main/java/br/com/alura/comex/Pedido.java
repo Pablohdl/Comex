@@ -2,6 +2,13 @@ package br.com.alura.comex;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.OptionalDouble;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Pedido {
 
@@ -58,5 +65,17 @@ public class Pedido {
                 ", data=" + data +
                 '}';
     }
-
+     public BigDecimal getValorTotal() {
+    	return getPreco().multiply(new BigDecimal(getQuantidade()));    	 
+    	 	
+    }
+     public static Optional<Pedido> isMaisBaratoQue(List<Pedido> listaDePedidos) {
+    	 
+    	 return listaDePedidos.stream().min(Comparator.comparing(Pedido::getValorTotal));
+    	  
+     }
+     public static Optional <Pedido> isMaisCaroQue(List<Pedido> pedidos) {
+    	 
+    	 return pedidos.stream().max(Comparator.comparing(Pedido::getValorTotal));
+     }      
 }
