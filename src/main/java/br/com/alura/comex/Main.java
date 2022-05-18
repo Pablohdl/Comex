@@ -41,7 +41,7 @@ public class Main {
         System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(sintetico.getPedidoMaisBarato().getValorTotal()), sintetico.getPedidoMaisBarato().getProduto());
         System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(sintetico.getPedidoMaisCaro().getValorTotal()), sintetico.getPedidoMaisCaro().getProduto());
         System.out.println("############################");
-        System.out.println("#### RELATÓRIO DE CLIENTE FIEL");
+        System.out.println("#### RELATÓRIO DE CLIENTES FIEIS");
         fidelidade.getClienteMaisFiel().forEach((x, y) -> System.out.printf("\nNOME: %s \nN° De Pedidos: %s\n", x, y.size()));
         System.out.println("############################");
         System.out.println("#### RELATÓRIO DE CATEGORIAS");
