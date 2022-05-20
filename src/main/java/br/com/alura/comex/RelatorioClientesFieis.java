@@ -1,20 +1,18 @@
 package br.com.alura.comex;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class RelatorioFiel {
+public class RelatorioClientesFieis {
 	
-	Map<String, List<Pedido>>clienteMaisFiel;
-    Pedido clienteFielMax;
-    
-	
+	private Map<String, List<Pedido>>clienteMaisFiel;
+
 	
 	
-	public RelatorioFiel(List<Pedido> listaDeClientes) {
+	
+	public RelatorioClientesFieis(List<Pedido> listaDeClientes) {
 	super();
 	if(listaDeClientes == null || listaDeClientes.isEmpty()) throw new IllegalArgumentException("A lista não pode ser nula.");
 	 this.clienteMaisFiel = new TreeMap();
@@ -27,10 +25,6 @@ public class RelatorioFiel {
 		return clienteMaisFiel;
 	}
 
-
-	public Pedido getClienteFielMax() {
-		return clienteFielMax;
-	}
 
 
 }

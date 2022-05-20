@@ -1,14 +1,9 @@
 package br.com.alura.comex;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
 import java.text.NumberFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Main {
@@ -25,10 +20,10 @@ public class Main {
     	List<Pedido> listaDeProdutos = ProcessadorDeCSV.listarPedidos(arquivoCSV);
     	
     	RelatorioSintetico sintetico = new RelatorioSintetico(listaDePedidos);
-    	RelatorioFiel fidelidade = new RelatorioFiel(listaDeClientes);
-    	RelatorioCategoria category = new RelatorioCategoria(listaDeCategorias);
-    	RelatorioLucrativos lucrativo = new RelatorioLucrativos(listaDeLucrativos);
-    	RelatorioProdutos prod = new RelatorioProdutos(listaDeProdutos);
+    	RelatorioClientesFieis fidelidade = new RelatorioClientesFieis(listaDeClientes);
+    	RelatorioCategoriaMaisVendidas category = new RelatorioCategoriaMaisVendidas(listaDeCategorias);
+    	RelatorioClientesMaisLucrativos lucrativo = new RelatorioClientesMaisLucrativos(listaDeLucrativos);
+    	RelatorioProdutosMaisVendidos prod = new RelatorioProdutosMaisVendidos(listaDeProdutos);
     	
     	
         
@@ -45,13 +40,13 @@ public class Main {
         fidelidade.getClienteMaisFiel().forEach((x, y) -> System.out.printf("\nNOME: %s \nN° De Pedidos: %s\n", x, y.size()));
         System.out.println("############################");
         System.out.println("#### RELATÓRIO DE CATEGORIAS");
-        category.getMontanteCategoria().forEach((x, y) -> System.out.printf("\nNOME: %s \nMontante: %s\nQuantidade Vendida: %s\n", x, y,category.quantidadeProdutosPorCategoria.put(x,null)));
+        category.getMontanteCategoria().forEach((x, y) -> System.out.printf("\nNOME: %s \nMontante: %s\nQuantidade Vendida: %s\n", x, y,category.getQuantidadeProdutosPorCategoria().put(x,null)));
         System.out.println("############################");
         System.out.println("####RELATORIO PRODUTO MAIS VENDIDO");
         prod.getQuantidadeProdutosPorVendas().forEach((x, y) -> System.out.printf("\nProduto: %s \nPedidos: %s\n", x, y));
         System.out.println("############################");
         System.out.println("####RELATORIO CLIENTE MAIS LUCRATIVO");
-        lucrativo.getClienteLucro().forEach((x, y) -> System.out.printf("\nNOME: %s \nPedidos: %s\nMontante: %s\n", x, y.size(),lucrativo.montanteCliente.put(x,null)));
+        lucrativo.getClienteLucro().forEach((x, y) -> System.out.printf("\nNOME: %s \nPedidos: %s\nMontante: %s\n", x, y.size(),lucrativo.getMontanteCliente().put(x,null)));
 
 }
 }

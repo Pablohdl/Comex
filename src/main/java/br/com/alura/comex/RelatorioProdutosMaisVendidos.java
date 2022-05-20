@@ -5,16 +5,16 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class RelatorioProdutos {
+public class RelatorioProdutosMaisVendidos {
 	
 	
 	
-	 Map<String, Integer> quantidadeProdutosPorVendas;
+	 private Map<String, Integer> quantidadeProdutosPorVendas;
 	
 	
 	
 	
-	public RelatorioProdutos(List<Pedido> listaDeProdVendas) {
+	public RelatorioProdutosMaisVendidos(List<Pedido> listaDeProdVendas) {
 	 super();
 	 this.quantidadeProdutosPorVendas = new TreeMap<>();
      listaDeProdVendas.stream()

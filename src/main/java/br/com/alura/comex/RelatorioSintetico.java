@@ -9,15 +9,13 @@ import java.util.stream.IntStream;
 
 public class RelatorioSintetico {
 	
-	 int totalDeProdutosVendidos = 0;
-     int totalDePedidosRealizados = 0;
-     BigDecimal montanteDeVendas = BigDecimal.ZERO;
-     Pedido pedidoMaisBarato = null;
-     Pedido pedidoMaisCaro = null;
-     HashSet<String> categoriasProcessadas = new HashSet<>();
-     int totalDeCategorias = 0;
-     Pedido isMaisBaratoQue;
-     Pedido isMaisCaroQue;
+	private int totalDeProdutosVendidos = 0;
+     private int totalDePedidosRealizados = 0;
+     private BigDecimal montanteDeVendas = BigDecimal.ZERO;
+     private Pedido pedidoMaisBarato = null;
+     private Pedido pedidoMaisCaro = null;
+     private HashSet<String> categoriasProcessadas = new HashSet<>();
+     private int totalDeCategorias = 0;
 
      
      
@@ -63,14 +61,5 @@ public class RelatorioSintetico {
 	public int getTotalDeCategorias() {
 		return totalDeCategorias;
 	}
-
-	public Pedido getIsMaisBaratoQue() {
-		return isMaisBaratoQue;
-	}
-
-	public Pedido getIsMaisCaroQue() {
-		return isMaisCaroQue;
-	}	
-		
 
 }

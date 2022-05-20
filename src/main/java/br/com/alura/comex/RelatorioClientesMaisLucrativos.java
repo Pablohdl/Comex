@@ -1,22 +1,21 @@
 package br.com.alura.comex;
 
 import java.math.BigDecimal;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class RelatorioLucrativos {
+public class RelatorioClientesMaisLucrativos {
 	
-	Map<String, List<Pedido>>clienteLucro;
-	Map<String, BigDecimal> montanteCliente;
-	
-	
+	private Map<String, List<Pedido>>clienteLucro;
+	private Map<String, BigDecimal> montanteCliente;
 	
 	
 	
-	public RelatorioLucrativos(List<Pedido> listaDeLucrativos) {
+	
+	
+	public RelatorioClientesMaisLucrativos(List<Pedido> listaDeLucrativos) {
 		super();
     	if(listaDeLucrativos == null || listaDeLucrativos.isEmpty()) throw new IllegalArgumentException("A lista não pode ser nula.");
     	this.clienteLucro = new TreeMap();

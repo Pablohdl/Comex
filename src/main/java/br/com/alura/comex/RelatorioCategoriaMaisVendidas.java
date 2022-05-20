@@ -6,14 +6,14 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class RelatorioCategoria {
+public class RelatorioCategoriaMaisVendidas {
 	
-    Map<String, BigDecimal> montanteCategoria;
-    Map<String, Integer> quantidadeProdutosPorCategoria;
+    private Map<String, BigDecimal> montanteCategoria;
+    private Map<String, Integer> quantidadeProdutosPorCategoria;
    
     
     
-    public RelatorioCategoria(List<Pedido> listaDeCategorias) {
+    public RelatorioCategoriaMaisVendidas(List<Pedido> listaDeCategorias) {
     	super();
     	if(listaDeCategorias == null || listaDeCategorias.isEmpty()) throw new IllegalArgumentException("A lista não pode ser nula.");
     	this.quantidadeProdutosPorCategoria = new TreeMap<>();
