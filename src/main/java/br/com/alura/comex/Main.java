@@ -23,7 +23,7 @@ public class Main {
     	RelatorioClientesFieis fidelidade = new RelatorioClientesFieis(listaDeClientes);
     	RelatorioCategoriaMaisVendidas category = new RelatorioCategoriaMaisVendidas(listaDeCategorias);
     	RelatorioClientesMaisLucrativos lucrativo = new RelatorioClientesMaisLucrativos(listaDeLucrativos);
-    	RelatorioProdutosMaisVendidos prod = new RelatorioProdutosMaisVendidos(listaDeProdutos);
+    	RelatorioProdutosMaisVendidos prod = new RelatorioProdutosMaisVendidos(listaDePedidos);
     	
     	
         
