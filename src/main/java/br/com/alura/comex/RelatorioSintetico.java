@@ -6,19 +6,6 @@ import java.text.NumberFormat;
 import java.util.*;
 import java.util.function.Function;
 
-<<<<<<< HEAD
-
-
-public class RelatorioSintetico  {
-
-	 int totalDeProdutosVendidos = 0;
-     int totalDePedidosRealizados = 0;
-     BigDecimal montanteDeVendas = BigDecimal.ZERO;
-     Pedido pedidoMaisBarato = null;
-     Pedido pedidoMaisCaro = null;
-     HashSet<String> categoriasProcessadas = new HashSet<>();
-     int totalDeCategorias = 0;
-=======
 public class RelatorioSintetico {
 	
 	private int totalDeProdutosVendidos = 0;
@@ -28,7 +15,7 @@ public class RelatorioSintetico {
      private Pedido pedidoMaisCaro = null;
      private HashSet<String> categoriasProcessadas = new HashSet<>();
      private int totalDeCategorias = 0;
->>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
+
 
 
 
@@ -106,8 +93,8 @@ public class RelatorioSintetico {
 		return totalDeCategorias;
 	}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
+
+
 }
+
