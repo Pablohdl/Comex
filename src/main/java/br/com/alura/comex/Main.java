@@ -1,57 +1,45 @@
 package br.com.alura.comex;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
 import java.text.NumberFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.*;
+
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class Main {
 
     public static void main(String[] args) throws IOException, URISyntaxException {
-      
-    	String arquivoCSV = "pedidos.csv";
-    	ProcessadorDeCSV processador = new ProcessadorDeCSV();
-    	
-    	List<Pedido> listaDePedidos = ProcessadorDeCSV.listarPedidos(arquivoCSV); 	
-    	List<Pedido> listaDeClientes = ProcessadorDeCSV.listarPedidos(arquivoCSV);	
-    	List<Pedido> listaDeCategorias = ProcessadorDeCSV.listarPedidos(arquivoCSV);
-    	List<Pedido> listaDeLucrativos = ProcessadorDeCSV.listarPedidos(arquivoCSV);
-    	List<Pedido> listaDeProdutos = ProcessadorDeCSV.listarPedidos(arquivoCSV);
-    	
-    	RelatorioSintetico sintetico = new RelatorioSintetico(listaDePedidos);
-    	RelatorioFiel fidelidade = new RelatorioFiel(listaDeClientes);
-    	RelatorioCategoria category = new RelatorioCategoria(listaDeCategorias);
-    	RelatorioLucrativos lucrativo = new RelatorioLucrativos(listaDeLucrativos);
-    	RelatorioProdutos prod = new RelatorioProdutos(listaDeProdutos);
-    	
-    	
-        
 
-        System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
-        System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", sintetico.getTotalDePedidosRealizados());
-        System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", sintetico.getTotalDeProdutosVendidos());
-        System.out.printf("- TOTAL DE CATEGORIAS: %s\n", sintetico.getTotalDeCategorias());
-        System.out.printf("- MONTANTE DE VENDAS: %s\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(sintetico.getMontanteDeVendas().setScale(2, RoundingMode.HALF_DOWN)));
-        System.out.printf("- PEDIDO MAIS BARATO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(sintetico.getPedidoMaisBarato().getValorTotal()), sintetico.getPedidoMaisBarato().getProduto());
-        System.out.printf("- PEDIDO MAIS CARO: %s (%s)\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(sintetico.getPedidoMaisCaro().getValorTotal()), sintetico.getPedidoMaisCaro().getProduto());
-        System.out.println("############################");
-        System.out.println("#### RELATÓRIO DE CLIENTES FIEIS");
-        fidelidade.getClienteMaisFiel().forEach((x, y) -> System.out.printf("\nNOME: %s \nN° De Pedidos: %s\n", x, y.size()));
-        System.out.println("############################");
-        System.out.println("#### RELATÓRIO DE CATEGORIAS");
-        category.getMontanteCategoria().forEach((x, y) -> System.out.printf("\nNOME: %s \nMontante: %s\nQuantidade Vendida: %s\n", x, y,category.quantidadeProdutosPorCategoria.put(x,null)));
-        System.out.println("############################");
-        System.out.println("####RELATORIO PRODUTO MAIS VENDIDO");
-        prod.getQuantidadeProdutosPorVendas().forEach((x, y) -> System.out.printf("\nProduto: %s \nPedidos: %s\n", x, y));
-        System.out.println("############################");
-        System.out.println("####RELATORIO CLIENTE MAIS LUCRATIVO");
-        lucrativo.getClienteLucro().forEach((x, y) -> System.out.printf("\nNOME: %s \nPedidos: %s\nMontante: %s\n", x, y.size(),lucrativo.montanteCliente.put(x,null)));
+        String arquivoCSV = "src/main/resources/pedidos.csv";
+        List<Pedido> pedidosCSV = new ProcessadorDeCSV().getPedidos(arquivoCSV);
 
-}
+        String xmlPedido = "src/main/resources/pedidos.xml";
+        List<Pedido> pedidosXML = new ProcessadorDeXML().getPedidos(xmlPedido);
+
+        String jsonPedido = "src/main/resources/pedidos.json";
+        List<Pedido> pedidosjson = new ProcessadorDeJSON().getPedidos(jsonPedido);
+
+        RelatorioSintetico sintetico = new RelatorioSintetico(pedidosXML);
+        RelatorioClientesFieis fidelidade = new RelatorioClientesFieis(pedidosXML);
+        RelatorioCategoriaQuantidade category = new RelatorioCategoriaQuantidade(pedidosXML);
+        RelatorioClientesMaisLucrativos lucrativo = new RelatorioClientesMaisLucrativos(pedidosXML);
+        RelatorioProdutosMaisVendidos prod = new RelatorioProdutosMaisVendidos(pedidosXML);
+
+        RelatorioSintetico.ImprimirRelatorioValoresTotais(sintetico);
+        RelatorioClientesFieis.ImprimirRelatorioClientesFieis(fidelidade);
+        RelatorioCategoriaQuantidade.ImprimirRelatorioDeCategorias(category);
+        RelatorioProdutosMaisVendidos.ImprimirRelatorioDeProdutosMaisVendidos(prod);
+        RelatorioClientesMaisLucrativos.ImprimirRelatorioDeClientesMaisLucrativos(lucrativo);
+
+
+    }
+
+
+
+
+
 }

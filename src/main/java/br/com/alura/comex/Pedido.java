@@ -2,33 +2,24 @@ package br.com.alura.comex;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.OptionalDouble;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import com.opencsv.bean.CsvBindByName;
 
 public class Pedido {
 
+	@CsvBindByName(column = "categoria", required = true)
     private String categoria;
+    @CsvBindByName(column = "produto", required = true)
     private String produto;
+    @CsvBindByName(column = "preco", required = true)
+    private BigDecimal preco;
+    @CsvBindByName(column = "quantidade", required = true)
+    private int quantidade;
+    @CsvBindByName(column = "data", required = true)
+    private String data;
+    @CsvBindByName(column = "cliente", required = true)
     private String cliente;
 
-    private BigDecimal preco;
-    private int quantidade;
-
-    private LocalDate data;
-
-    public Pedido(String categoria, String produto, String cliente, BigDecimal preco, int quantidade, LocalDate data) {
-        this.categoria = categoria;
-        this.produto = produto;
-        this.cliente = cliente;
-        this.preco = preco;
-        this.quantidade = quantidade;
-        this.data = data;
-    }
 
     public String getCategoria() {
         return categoria;
@@ -50,7 +41,7 @@ public class Pedido {
         return quantidade;
     }
 
-    public LocalDate getData() {
+    public String getData() {
         return data;
     }
 
@@ -69,13 +60,5 @@ public class Pedido {
     	return getPreco().multiply(new BigDecimal(getQuantidade()));    	 
     	 	
     }
-     public static Optional<Pedido> isMaisBaratoQue(List<Pedido> listaDePedidos) {
-    	 
-    	 return listaDePedidos.stream().min(Comparator.comparing(Pedido::getValorTotal));
-    	  
-     }
-     public static Optional <Pedido> isMaisCaroQue(List<Pedido> pedidos) {
-    	 
-    	 return pedidos.stream().max(Comparator.comparing(Pedido::getValorTotal));
-     }      
+
 }
