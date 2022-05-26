@@ -7,7 +7,11 @@ import java.util.stream.Collectors;
 
 public class RelatorioClientesFieis {
 	
+<<<<<<< HEAD
 	Map<String, List<Pedido>>clienteMaisFiel;
+=======
+	private Map<String, List<Pedido>>clienteMaisFiel;
+>>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
 
 	
 	
@@ -16,6 +20,7 @@ public class RelatorioClientesFieis {
 	super();
 	if(listaDeClientes == null || listaDeClientes.isEmpty()) throw new IllegalArgumentException("A lista não pode ser nula.");
 	 this.clienteMaisFiel = new TreeMap();
+<<<<<<< HEAD
 		AgrupandoClientesMaisFieis(listaDeClientes);
 	}
 
@@ -31,11 +36,21 @@ public class RelatorioClientesFieis {
 
 
 
+=======
+     listaDeClientes.stream()
+             		.collect(Collectors.groupingBy(Pedido::getCliente)).forEach((x, y) -> clienteMaisFiel.put(x, y));
+	}
+		
+	
+>>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
 	public Map<String, List<Pedido>> getClienteMaisFiel() {
 		return clienteMaisFiel;
 	}
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
 }

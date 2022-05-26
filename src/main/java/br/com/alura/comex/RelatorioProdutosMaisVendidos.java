@@ -9,13 +9,20 @@ public class RelatorioProdutosMaisVendidos {
 	
 	
 	
+<<<<<<< HEAD
 	 Map<String, Integer> quantidadeProdutosPorVendas;
 
 
+=======
+	 private Map<String, Integer> quantidadeProdutosPorVendas;
+	
+	
+>>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
 	
 	
 	public RelatorioProdutosMaisVendidos(List<Pedido> listaDeProdVendas) {
 	 super();
+<<<<<<< HEAD
 		PegarQuantidadeDeProdutosPorVendas(listaDeProdVendas);
 
 	}
@@ -46,4 +53,21 @@ public class RelatorioProdutosMaisVendidos {
 
 
 
+=======
+	 this.quantidadeProdutosPorVendas = new TreeMap<>();
+     listaDeProdVendas.stream()
+             		 .collect(Collectors.groupingBy(Pedido::getProduto))
+                      .forEach((x,y) -> quantidadeProdutosPorVendas.put(x,y.stream().mapToInt(Pedido::getQuantidade).sum()));
+
+	 }
+	
+	public Map<String, Integer> getQuantidadeProdutosPorVendas() {
+		return quantidadeProdutosPorVendas;
+	}
+	
+	
+	
+	
+	
+>>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
 }
