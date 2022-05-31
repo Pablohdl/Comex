@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 
 public class RelatorioCategoriaQuantidade {
 	
-    Map<String, BigDecimal> montanteCategoria;
-    Map<String, Integer> quantidadeProdutosPorCategoria;
+    private Map<String, BigDecimal> montanteCategoria;
+    private Map<String, Integer> quantidadeProdutosPorCategoria;
    
     
     
@@ -34,7 +34,7 @@ public class RelatorioCategoriaQuantidade {
 						 .forEach((x,y) -> quantidadeProdutosPorCategoria.put(x,y.stream().mapToInt(Pedido::getQuantidade).sum()));
 	}
 
-	public static void ImprimirRelatorioDeCategorias(RelatorioCategoriaQuantidade category) {
+	public static void imprimirRelatorioDeCategorias(RelatorioCategoriaQuantidade category) {
 		System.out.println("############################");
 		System.out.println("#### RELATÓRIO DE CATEGORIAS");
 		category.getMontanteCategoria().forEach((x, y) -> System.out.printf("\nNOME: %s \nMontante: %s\nQuantidade Vendida: %s\n", x, y, category.quantidadeProdutosPorCategoria.put(x,null)));

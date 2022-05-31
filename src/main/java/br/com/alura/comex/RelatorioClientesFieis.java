@@ -7,11 +7,9 @@ import java.util.stream.Collectors;
 
 public class RelatorioClientesFieis {
 	
-<<<<<<< HEAD
-	Map<String, List<Pedido>>clienteMaisFiel;
-=======
+
 	private Map<String, List<Pedido>>clienteMaisFiel;
->>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
+
 
 	
 	
@@ -20,7 +18,7 @@ public class RelatorioClientesFieis {
 	super();
 	if(listaDeClientes == null || listaDeClientes.isEmpty()) throw new IllegalArgumentException("A lista não pode ser nula.");
 	 this.clienteMaisFiel = new TreeMap();
-<<<<<<< HEAD
+
 		AgrupandoClientesMaisFieis(listaDeClientes);
 	}
 
@@ -29,28 +27,17 @@ public class RelatorioClientesFieis {
 						.collect(Collectors.groupingBy(Pedido::getCliente)).forEach((x, y) -> clienteMaisFiel.put(x, y));
 	}
 
-	public static void ImprimirRelatorioClientesFieis(RelatorioClientesFieis fidelidade) {
+	public static void imprimirRelatorioClientesFieis(RelatorioClientesFieis fidelidade) {
 		System.out.println("#### RELATÓRIO DE CLIENTES FIEIS");
 		fidelidade.getClienteMaisFiel().forEach((x, y) -> System.out.printf("\nNOME: %s \nN° De Pedidos: %s\n", x, y.size()));
 	}
 
 
 
-=======
-     listaDeClientes.stream()
-             		.collect(Collectors.groupingBy(Pedido::getCliente)).forEach((x, y) -> clienteMaisFiel.put(x, y));
-	}
-		
-	
->>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
 	public Map<String, List<Pedido>> getClienteMaisFiel() {
 		return clienteMaisFiel;
 	}
 
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 6a982afa247369bab4370a880d5352a6b0039df2
 }

@@ -1,13 +1,8 @@
 package br.com.alura.comex;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.math.RoundingMode;
 import java.net.URISyntaxException;
-import java.text.NumberFormat;
 import java.util.*;
-
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class Main {
 
@@ -28,11 +23,11 @@ public class Main {
         RelatorioClientesMaisLucrativos lucrativo = new RelatorioClientesMaisLucrativos(pedidosXML);
         RelatorioProdutosMaisVendidos prod = new RelatorioProdutosMaisVendidos(pedidosXML);
 
-        RelatorioSintetico.ImprimirRelatorioValoresTotais(sintetico);
-        RelatorioClientesFieis.ImprimirRelatorioClientesFieis(fidelidade);
-        RelatorioCategoriaQuantidade.ImprimirRelatorioDeCategorias(category);
-        RelatorioProdutosMaisVendidos.ImprimirRelatorioDeProdutosMaisVendidos(prod);
-        RelatorioClientesMaisLucrativos.ImprimirRelatorioDeClientesMaisLucrativos(lucrativo);
+        RelatorioSintetico.imprimirRelatorioValoresTotais(sintetico);
+        RelatorioClientesFieis.imprimirRelatorioClientesFieis(fidelidade);
+        RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(category);
+        RelatorioProdutosMaisVendidos.imprimirRelatorioDeProdutosMaisVendidos(prod);
+        RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(lucrativo);
 
 
     }

@@ -54,7 +54,7 @@ public class RelatorioSintetico {
 		this.montanteDeVendas = listaDePedidos.stream().map(mapeamentoPedidos).reduce(BigDecimal.ZERO, BigDecimal::add);
 	}
 
-	public static void ImprimirRelatorioValoresTotais(RelatorioSintetico sintetico) {
+	public static void imprimirRelatorioValoresTotais(RelatorioSintetico sintetico) {
 		System.out.println("#### RELATÓRIO DE VALORES TOTAIS");
 		System.out.printf("- TOTAL DE PEDIDOS REALIZADOS: %s\n", sintetico.getTotalDePedidosRealizados());
 		System.out.printf("- TOTAL DE PRODUTOS VENDIDOS: %s\n", sintetico.getTotalDeProdutosVendidos());

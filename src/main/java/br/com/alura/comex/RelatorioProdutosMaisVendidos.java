@@ -13,18 +13,18 @@ public class RelatorioProdutosMaisVendidos {
 	
 	public RelatorioProdutosMaisVendidos(List<Pedido> listaDeProdVendas) {
 	 super();
-		PegarQuantidadeDeProdutosPorVendas(listaDeProdVendas);
+		pegarQuantidadeDeProdutosPorVendas(listaDeProdVendas);
 
 	}
 
-	private void PegarQuantidadeDeProdutosPorVendas(List<Pedido> listaDeProdVendas) {
+	private void pegarQuantidadeDeProdutosPorVendas(List<Pedido> listaDeProdVendas) {
 		this.quantidadeProdutosPorVendas = new TreeMap<>();
 		listaDeProdVendas.stream()
 						 .collect(Collectors.groupingBy(Pedido::getProduto))
 						 .forEach((x,y) -> quantidadeProdutosPorVendas.put(x,y.stream().mapToInt(Pedido::getQuantidade).sum()));
 	}
 
-	public static void ImprimirRelatorioDeProdutosMaisVendidos(RelatorioProdutosMaisVendidos prod) {
+	public static void imprimirRelatorioDeProdutosMaisVendidos(RelatorioProdutosMaisVendidos prod) {
 		System.out.println("####RELATORIO PRODUTO MAIS VENDIDO");
 		prod.getQuantidadeProdutosPorVendas()
 				.entrySet().stream()

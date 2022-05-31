@@ -38,7 +38,7 @@ public class RelatorioClientesMaisLucrativos {
 						.collect(Collectors.groupingBy(Pedido::getCliente)).forEach((x, y) -> clienteLucro.put(x, y));
 	}
 
-	public static void ImprimirRelatorioDeClientesMaisLucrativos(RelatorioClientesMaisLucrativos lucrativo) {
+	public static void imprimirRelatorioDeClientesMaisLucrativos(RelatorioClientesMaisLucrativos lucrativo) {
 		System.out.println("####RELATORIO CLIENTE MAIS LUCRATIVO");
 		lucrativo.getMontanteCliente()
 				.entrySet().stream()
