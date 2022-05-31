@@ -1,4 +1,6 @@
-package br.com.alura.comex;
+package br.com.alura.comex.relatorios;
+
+import br.com.alura.comex.model.Pedido;
 
 import java.util.List;
 import java.util.Map;

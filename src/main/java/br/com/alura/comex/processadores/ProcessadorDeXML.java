@@ -1,10 +1,12 @@
-package br.com.alura.comex;
+package br.com.alura.comex.processadores;
+
+import br.com.alura.comex.model.Pedido;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
 public class ProcessadorDeXML implements Processador{
 		@Override

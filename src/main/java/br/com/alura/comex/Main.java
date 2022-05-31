@@ -1,8 +1,14 @@
 package br.com.alura.comex;
 
+import br.com.alura.comex.model.Pedido;
+import br.com.alura.comex.processadores.ProcessadorDeCSV;
+import br.com.alura.comex.processadores.ProcessadorDeJSON;
+import br.com.alura.comex.processadores.ProcessadorDeXML;
+import br.com.alura.comex.relatorios.*;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.List;
 
 public class Main {
 
@@ -22,12 +28,14 @@ public class Main {
         RelatorioCategoriaQuantidade category = new RelatorioCategoriaQuantidade(pedidosXML);
         RelatorioClientesMaisLucrativos lucrativo = new RelatorioClientesMaisLucrativos(pedidosXML);
         RelatorioProdutosMaisVendidos prod = new RelatorioProdutosMaisVendidos(pedidosXML);
+        RelatorioProdutoMaisCaroCategoria prodcaro = new RelatorioProdutoMaisCaroCategoria(pedidosXML);
 
         RelatorioSintetico.imprimirRelatorioValoresTotais(sintetico);
         RelatorioClientesFieis.imprimirRelatorioClientesFieis(fidelidade);
         RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(category);
         RelatorioProdutosMaisVendidos.imprimirRelatorioDeProdutosMaisVendidos(prod);
         RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(lucrativo);
+        RelatorioProdutoMaisCaroCategoria.imprimirRelatorioDeProdutosMaisCaroCategoria(prodcaro);
 
 
     }

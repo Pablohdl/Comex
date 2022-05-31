@@ -1,9 +1,14 @@
-package br.com.alura.comex;
+package br.com.alura.comex.relatorios;
+
+import br.com.alura.comex.model.Pedido;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.NumberFormat;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Locale;
 import java.util.function.Function;
 
 public class RelatorioSintetico {
@@ -11,7 +16,8 @@ public class RelatorioSintetico {
 	private int totalDeProdutosVendidos = 0;
      private int totalDePedidosRealizados = 0;
      private BigDecimal montanteDeVendas = BigDecimal.ZERO;
-     private Pedido pedidoMaisBarato = null;
+
+     private  Pedido pedidoMaisBarato = null;
      private Pedido pedidoMaisCaro = null;
      private HashSet<String> categoriasProcessadas = new HashSet<>();
      private int totalDeCategorias = 0;

@@ -1,4 +1,6 @@
-package br.com.alura.comex;
+package br.com.alura.comex.relatorios;
+
+import br.com.alura.comex.model.Pedido;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -9,7 +11,7 @@ import java.util.stream.Collectors;
 public class RelatorioClientesMaisLucrativos {
 
 
-	private Map<String, List<Pedido>>clienteLucro;
+	private Map<String, Long > clienteLucro;
 	private Map<String, BigDecimal> montanteCliente;
 
 	
@@ -35,7 +37,7 @@ public class RelatorioClientesMaisLucrativos {
 	private void agrupandoClientesMaisLucrativos(List<Pedido> listaDeLucrativos) {
 		this.clienteLucro = new TreeMap();
 		listaDeLucrativos.stream()
-						.collect(Collectors.groupingBy(Pedido::getCliente)).forEach((x, y) -> clienteLucro.put(x, y));
+				.collect(Collectors.groupingBy(Pedido::getCliente)).forEach((x,y) -> clienteLucro.put(x,y.stream().count()));
 	}
 
 	public static void imprimirRelatorioDeClientesMaisLucrativos(RelatorioClientesMaisLucrativos lucrativo) {
@@ -45,17 +47,14 @@ public class RelatorioClientesMaisLucrativos {
 				.sorted(Map.Entry.<String, BigDecimal>comparingByValue().reversed())
 				.limit(2)
 				.forEach(x -> {
-					System.out.printf("\nCLIENTE: %s\nMONTANTE: %s\nN°de Pedidos %s\n", x.getKey(), x.getValue(),lucrativo.getClienteLucro().get(x.getKey()));
+					System.out.printf("\nCLIENTE: %s\nMONTANTE GASTO: %s\nN°de Pedidos %s\n", x.getKey(),x.getValue(),lucrativo.clienteLucro.put(x.getKey(), null));
 
 				});
 	}
-	public Map<String, List<Pedido>> getClienteLucro() {
+
+	public Map<String, Long> getClienteLucro() {
 		return clienteLucro;
 	}
-
-
-
-
 
 	public Map<String, BigDecimal> getMontanteCliente() {
 		return montanteCliente;

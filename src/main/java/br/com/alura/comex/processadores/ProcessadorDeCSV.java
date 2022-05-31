@@ -1,6 +1,6 @@
-package br.com.alura.comex;
+package br.com.alura.comex.processadores;
 
-import br.com.alura.comex.Pedido;
+import br.com.alura.comex.model.Pedido;
 import com.opencsv.bean.CsvToBeanBuilder;
 
 import java.io.FileNotFoundException;

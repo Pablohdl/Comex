@@ -1,9 +1,8 @@
-package br.com.alura.comex;
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
+package br.com.alura.comex.model;
 
 import com.opencsv.bean.CsvBindByName;
+
+import java.math.BigDecimal;
 
 public class Pedido {
 

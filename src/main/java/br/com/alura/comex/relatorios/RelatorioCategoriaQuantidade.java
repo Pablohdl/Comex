@@ -1,4 +1,6 @@
-package br.com.alura.comex;
+package br.com.alura.comex.relatorios;
+
+import br.com.alura.comex.model.Pedido;
 
 import java.math.BigDecimal;
 import java.util.List;
