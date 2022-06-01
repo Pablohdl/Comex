@@ -9,9 +9,9 @@ import java.util.List;
 
 public class ProcessadorDeCSV implements Processador {
     @Override
-    public List<Pedido> getPedidos(String caminho_arquivo) throws FileNotFoundException {
+    public List<Pedido> getPedidos(String caminhoArquivo) throws FileNotFoundException {
 
-        return new CsvToBeanBuilder<Pedido>(new FileReader(caminho_arquivo))
+        return new CsvToBeanBuilder<Pedido>(new FileReader(caminhoArquivo))
                 .withType(Pedido.class)
                 .withSeparator(',')
                 .build()

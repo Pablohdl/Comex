@@ -8,20 +8,25 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-public class RelatorioCategoriaQuantidade {
+public class RelatorioCategoriaQuantidade  {
 	
     private Map<String, BigDecimal> montanteCategoria;
     private Map<String, Integer> quantidadeProdutosPorCategoria;
+
+	private List<VendasPorCategoria> vendasPorCategoria;
    
     
     
     public RelatorioCategoriaQuantidade(List<Pedido> listaDeCategorias) {
     	super();
-    	if(listaDeCategorias == null || listaDeCategorias.isEmpty()) throw new IllegalArgumentException("A lista não pode ser nula.");
 		quantidadeDeProdutoPorCategoria(listaDeCategorias);
 		montantePorCategoria(listaDeCategorias);
 	}
 
+
+	public List<RelatorioCategoriaQuantidade.VendasPorCategoria> getVendasPorCategoria() {
+		return vendasPorCategoria;
+	}
 	private void montantePorCategoria(List<Pedido> listaDeCategorias) {
 		this.montanteCategoria = new TreeMap<>();
 		listaDeCategorias.stream()
@@ -41,7 +46,8 @@ public class RelatorioCategoriaQuantidade {
 		System.out.println("#### RELATÓRIO DE CATEGORIAS");
 		category.getMontanteCategoria().forEach((x, y) -> System.out.printf("\nNOME: %s \nMontante: %s\nQuantidade Vendida: %s\n", x, y, category.quantidadeProdutosPorCategoria.put(x,null)));
 		System.out.println("############################");
-	}
+
+    }
 
 
 	public Map<String, BigDecimal> getMontanteCategoria() {
@@ -54,8 +60,33 @@ public class RelatorioCategoriaQuantidade {
 		return quantidadeProdutosPorCategoria;
 	}
 
-	
-	
+
+	public class VendasPorCategoria {
+
+		private final String categoria;
+		private final int quantidadeVendida;
+
+		private final BigDecimal montanteCat;
+
+		public VendasPorCategoria(String categoria, int quantidadeVendida, BigDecimal montanteCat) {
+			this.categoria = categoria;
+			this.quantidadeVendida = quantidadeVendida;
+			this.montanteCat = montanteCat;
+		}
+
+
+		public String getCategoria() {
+			return categoria;
+		}
+
+		public int getQuantidadeVendida() {
+			return quantidadeVendida;
+		}
+
+		public BigDecimal getMontanteCat() {
+			return montanteCat;
+		}
+	}
 	
 
 }

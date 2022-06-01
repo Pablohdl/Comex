@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.function.Function;
 
-public class RelatorioSintetico {
+public class RelatorioSintetico  {
 	
 	private int totalDeProdutosVendidos = 0;
      private int totalDePedidosRealizados = 0;

@@ -14,10 +14,15 @@ public class RelatorioClientesMaisLucrativos {
 	private Map<String, Long > clienteLucro;
 	private Map<String, BigDecimal> montanteCliente;
 
-	
-	
-	
-	
+	private List<ClientesLucrativos> clientesLucrativos;
+
+
+
+
+
+	public List<RelatorioClientesMaisLucrativos.ClientesLucrativos> getClientesLucrativos() {
+		return clientesLucrativos;
+	}
 	
 	public RelatorioClientesMaisLucrativos(List<Pedido> listaDeLucrativos) {
 		super();
@@ -59,9 +64,25 @@ public class RelatorioClientesMaisLucrativos {
 	public Map<String, BigDecimal> getMontanteCliente() {
 		return montanteCliente;
 	}
-	
-	
-    
-	
+
+
+
+	public class ClientesLucrativos {
+		private final String cliente;
+		private final BigDecimal montante;
+
+		public ClientesLucrativos(String cliente, BigDecimal montante) {
+			this.cliente = cliente;
+			this.montante = montante;
+		}
+
+		public String getCliente() {
+			return cliente;
+		}
+
+		public BigDecimal getMontante() {
+			return montante;
+		}
+	}
 
 }

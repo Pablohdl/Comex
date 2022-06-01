@@ -11,10 +11,12 @@ public class RelatorioClientesFieis {
 	
 
 	private Map<String, List<Pedido>>clienteMaisFiel;
+	private List<ClientesFieis> clientesFieis;
 
 
-	
-	
+	public List<RelatorioClientesFieis.ClientesFieis> getClientesFieis() {
+		return clientesFieis;
+	}
 	
 	public RelatorioClientesFieis(List<Pedido> listaDeClientes) {
 	super();
@@ -41,5 +43,23 @@ public class RelatorioClientesFieis {
 	}
 
 
+
+	public class ClientesFieis {
+		private final String cliente;
+		private final Long numPedidos;
+
+		public ClientesFieis(String cliente, Long numPedidos) {
+			this.cliente = cliente;
+			this.numPedidos = numPedidos;
+		}
+
+		public String getCliente() {
+			return cliente;
+		}
+
+		public Long getNumPedidos() {
+			return numPedidos;
+		}
+	}
 
 }

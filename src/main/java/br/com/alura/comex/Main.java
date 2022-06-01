@@ -23,12 +23,12 @@ public class Main {
         String jsonPedido = "src/main/resources/pedidos.json";
         List<Pedido> pedidosjson = new ProcessadorDeJSON().getPedidos(jsonPedido);
 
-        RelatorioSintetico sintetico = new RelatorioSintetico(pedidosXML);
-        RelatorioClientesFieis fidelidade = new RelatorioClientesFieis(pedidosXML);
-        RelatorioCategoriaQuantidade category = new RelatorioCategoriaQuantidade(pedidosXML);
-        RelatorioClientesMaisLucrativos lucrativo = new RelatorioClientesMaisLucrativos(pedidosXML);
-        RelatorioProdutosMaisVendidos prod = new RelatorioProdutosMaisVendidos(pedidosXML);
-        RelatorioProdutoMaisCaroCategoria prodcaro = new RelatorioProdutoMaisCaroCategoria(pedidosXML);
+        RelatorioSintetico sintetico = new RelatorioSintetico(pedidosCSV);
+        RelatorioClientesFieis fidelidade = new RelatorioClientesFieis(pedidosCSV);
+        RelatorioCategoriaQuantidade category = new RelatorioCategoriaQuantidade(pedidosCSV);
+        RelatorioClientesMaisLucrativos lucrativo = new RelatorioClientesMaisLucrativos(pedidosCSV);
+        RelatorioProdutosMaisVendidos prod = new RelatorioProdutosMaisVendidos(pedidosCSV);
+        RelatorioProdutoMaisCaroCategoria prodcaro = new RelatorioProdutoMaisCaroCategoria(pedidosCSV);
 
         RelatorioSintetico.imprimirRelatorioValoresTotais(sintetico);
         RelatorioClientesFieis.imprimirRelatorioClientesFieis(fidelidade);

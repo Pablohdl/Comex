@@ -12,26 +12,32 @@ import java.util.stream.Collectors;
 public class RelatorioProdutoMaisCaroCategoria {
 
 
-        private Map<String, String> produtoMaisCaroCategoria;
+    private Map<String, String> produtoMaisCaroCategoria;
 
-        private Map<String, BigDecimal> maiorPrecoPorCategoria;
+    private Map<String, BigDecimal> maiorPrecoPorCategoria;
 
-        public RelatorioProdutoMaisCaroCategoria(List<Pedido> listaDeProdutosMaisCaros)  {
-
-            this.produtoMaisCaroCategoria = new TreeMap<>();
-            listaDeProdutosMaisCaros.stream().collect(Collectors.groupingBy(Pedido::getCategoria)).forEach((a, b) -> {
-                produtoMaisCaroCategoria.put(a, b.stream().max(Comparator.comparing(Pedido::getPreco))
-                        .orElseThrow(() -> new IllegalStateException("Não foi possível encontrar o produto mais caro da Categoria: " + a)).getProduto());
-            });
+    private List<ProdutosMaisCarosCatego> produtosMaisCarosCatego;
 
 
+    public List<RelatorioProdutoMaisCaroCategoria.ProdutosMaisCarosCatego> getProdutosMaisCarosCatego() {
+        return produtosMaisCarosCatego;
+    }
 
-             this.maiorPrecoPorCategoria = new TreeMap<>();
-             listaDeProdutosMaisCaros.stream().collect(Collectors.groupingBy(Pedido::getCategoria)).forEach((a, b) -> {
-                 maiorPrecoPorCategoria.put(a, b.stream().max(Comparator.comparing(Pedido::getPreco))
-                        .orElseThrow(() -> new IllegalStateException("Não foi possível encontrar o maior valor Categoria: " + a)).getPreco());
-            });
-        }
+    public RelatorioProdutoMaisCaroCategoria(List<Pedido> listaDeProdutosMaisCaros) {
+
+        this.produtoMaisCaroCategoria = new TreeMap<>();
+        listaDeProdutosMaisCaros.stream().collect(Collectors.groupingBy(Pedido::getCategoria)).forEach((a, b) -> {
+            produtoMaisCaroCategoria.put(a, b.stream().max(Comparator.comparing(Pedido::getPreco))
+                    .orElseThrow(() -> new IllegalStateException("Não foi possível encontrar o produto mais caro da Categoria: " + a)).getProduto());
+        });
+
+
+        this.maiorPrecoPorCategoria = new TreeMap<>();
+        listaDeProdutosMaisCaros.stream().collect(Collectors.groupingBy(Pedido::getCategoria)).forEach((a, b) -> {
+            maiorPrecoPorCategoria.put(a, b.stream().max(Comparator.comparing(Pedido::getPreco))
+                    .orElseThrow(() -> new IllegalStateException("Não foi possível encontrar o maior valor Categoria: " + a)).getPreco());
+        });
+    }
 
     public Map<String, String> getProdutoMaisCaroCategoria() {
         return produtoMaisCaroCategoria;
@@ -45,9 +51,33 @@ public class RelatorioProdutoMaisCaroCategoria {
         System.out.println("####RELATORIO PRODUTO MAIS VENDIDO");
         prodcaro.getMaiorPrecoPorCategoria()
                 .entrySet().stream()
-                .forEach(x  -> System.out.printf("\nCATEGORIA: %s\nMONTANTE: %s\n PRODUTO %s\n", x.getKey() , x.getValue(),prodcaro.produtoMaisCaroCategoria.put(x.getKey(), null)));
+                .forEach(x -> System.out.printf("\nCATEGORIA: %s\nMONTANTE: %s\n PRODUTO: %s\n", x.getKey(), x.getValue(), prodcaro.produtoMaisCaroCategoria.put(x.getKey(), null)));
     }
 
+    public class ProdutosMaisCarosCatego {
+
+        private final String categoria;
+        private final String produto;
+        private final BigDecimal preco;
+
+        public ProdutosMaisCarosCatego(String categoria, String produto, BigDecimal preco) {
+            this.categoria = categoria;
+            this.produto = produto;
+            this.preco = preco;
         }
 
+        public String getCategoria() {
+            return categoria;
+        }
+
+        public String getProduto() {
+            return produto;
+        }
+
+        public BigDecimal getPreco() {
+            return preco;
+        }
+
+    }
+}
 

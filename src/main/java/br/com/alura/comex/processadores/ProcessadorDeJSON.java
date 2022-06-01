@@ -10,8 +10,8 @@ import java.util.List;
 
 public class ProcessadorDeJSON implements Processador{
 	@Override
-	 public List<Pedido> getPedidos(String caminho_arquivo) throws IOException {
-        return new ObjectMapper().readValue(new File(caminho_arquivo), new TypeReference<>() {});
+	 public List<Pedido> getPedidos(String caminhoArquivo) throws IOException {
+        return new ObjectMapper().readValue(new File(caminhoArquivo), new TypeReference<>() {});
     }
 
 }

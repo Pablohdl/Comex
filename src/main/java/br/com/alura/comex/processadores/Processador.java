@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface Processador {
 	
-	List<Pedido> getPedidos(String caminho_arquivo) throws IOException;
+	List<Pedido> getPedidos(String caminhoArquivo) throws IOException;
 
 }
