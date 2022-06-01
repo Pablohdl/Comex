@@ -1,8 +1,7 @@
-package br.com.alura.comex.relatorio.test;
+package br.com.alura.comex.relatorios;
 
 import br.com.alura.comex.model.Pedido;
 import br.com.alura.comex.model.PedidoBuilder;
-import br.com.alura.comex.relatorios.RelatorioProdutosMaisVendidos;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -27,7 +26,7 @@ public class RelatorioProdutosMaisVendidosTest {
 
       RelatorioProdutosMaisVendidos relatorio = new RelatorioProdutosMaisVendidos(Collections.singletonList(pedido));
       Assertions.assertAll(relatorio::getProdutosMaisVendidos);
-      RelatorioProdutosMaisVendidos.imprimirRelatorioDeProdutosMaisVendidos(relatorio);
+      //RelatorioProdutosMaisVendidos.imprimirRelatorioDeProdutosMaisVendidos(relatorio);
 
     }
 
@@ -63,7 +62,7 @@ public class RelatorioProdutosMaisVendidosTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioProdutosMaisVendidos relatorio = new RelatorioProdutosMaisVendidos(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getProdutosMaisVendidos);
-        RelatorioProdutosMaisVendidos.imprimirRelatorioDeProdutosMaisVendidos(relatorio);
+        //RelatorioProdutosMaisVendidos.imprimirRelatorioDeProdutosMaisVendidos(relatorio);
 
 
     }

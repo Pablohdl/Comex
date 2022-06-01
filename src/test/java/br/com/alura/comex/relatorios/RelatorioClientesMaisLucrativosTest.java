@@ -1,8 +1,7 @@
-package br.com.alura.comex.relatorio.test;
+package br.com.alura.comex.relatorios;
 
 import br.com.alura.comex.model.Pedido;
 import br.com.alura.comex.model.PedidoBuilder;
-import br.com.alura.comex.relatorios.RelatorioClientesMaisLucrativos;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -45,7 +44,7 @@ public class RelatorioClientesMaisLucrativosTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioClientesMaisLucrativos relatorio = new RelatorioClientesMaisLucrativos(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getClientesLucrativos);
-        RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(relatorio);
+        //RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(relatorio);
 
     }
 
@@ -81,7 +80,7 @@ public class RelatorioClientesMaisLucrativosTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioClientesMaisLucrativos relatorio = new RelatorioClientesMaisLucrativos(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getClientesLucrativos);
-        RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(relatorio);
+        //RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(relatorio);
 
     }
 

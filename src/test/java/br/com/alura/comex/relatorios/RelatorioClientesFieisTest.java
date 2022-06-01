@@ -1,8 +1,7 @@
-package br.com.alura.comex.relatorio.test;
+package br.com.alura.comex.relatorios;
 
 import br.com.alura.comex.model.Pedido;
 import br.com.alura.comex.model.PedidoBuilder;
-import br.com.alura.comex.relatorios.RelatorioClientesFieis;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -43,7 +42,7 @@ public class RelatorioClientesFieisTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioClientesFieis relatorio = new RelatorioClientesFieis(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getClientesFieis);
-        RelatorioClientesFieis.imprimirRelatorioClientesFieis(relatorio);
+        //RelatorioClientesFieis.imprimirRelatorioClientesFieis(relatorio);
 
     }
 
@@ -79,7 +78,7 @@ public class RelatorioClientesFieisTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioClientesFieis relatorio = new RelatorioClientesFieis(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getClienteMaisFiel);
-        RelatorioClientesFieis.imprimirRelatorioClientesFieis(relatorio);
+        //RelatorioClientesFieis.imprimirRelatorioClientesFieis(relatorio);
 
     }
 

@@ -1,8 +1,7 @@
-package br.com.alura.comex.relatorio.test;
+package br.com.alura.comex.relatorios;
 
 import br.com.alura.comex.model.Pedido;
 import br.com.alura.comex.model.PedidoBuilder;
-import br.com.alura.comex.relatorios.RelatorioCategoriaQuantidade;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -17,7 +16,7 @@ public class RelatorioCategoriaQuantidadeTest {
         List<Pedido> pedidonulo = Collections.emptyList();
         RelatorioCategoriaQuantidade relatoriovazio = new RelatorioCategoriaQuantidade(pedidonulo);
         Assertions.assertAll(relatoriovazio::getVendasPorCategoria);
-        RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatoriovazio);
+        //RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatoriovazio);
         //Assertions.assertThrows(IllegalArgumentException.class ,() ->RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatoriovazio));
     }
 
@@ -54,7 +53,7 @@ public class RelatorioCategoriaQuantidadeTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioCategoriaQuantidade relatorio = new RelatorioCategoriaQuantidade(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getVendasPorCategoria);
-        RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatorio);
+        //RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatorio);
     }
 
     @Test
@@ -90,6 +89,6 @@ public class RelatorioCategoriaQuantidadeTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioCategoriaQuantidade relatorio = new RelatorioCategoriaQuantidade(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getVendasPorCategoria);
-        RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatorio);
+        // RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatorio);
     }
 }

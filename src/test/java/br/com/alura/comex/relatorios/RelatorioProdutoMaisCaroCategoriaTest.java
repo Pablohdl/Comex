@@ -1,8 +1,7 @@
-package br.com.alura.comex.relatorio.test;
+package br.com.alura.comex.relatorios;
 
 import br.com.alura.comex.model.Pedido;
 import br.com.alura.comex.model.PedidoBuilder;
-import br.com.alura.comex.relatorios.RelatorioProdutoMaisCaroCategoria;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -43,7 +42,7 @@ public class RelatorioProdutoMaisCaroCategoriaTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioProdutoMaisCaroCategoria relatorio = new RelatorioProdutoMaisCaroCategoria(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getProdutosMaisCarosCatego);
-        RelatorioProdutoMaisCaroCategoria.imprimirRelatorioDeProdutosMaisCaroCategoria(relatorio);
+        //RelatorioProdutoMaisCaroCategoria.imprimirRelatorioDeProdutosMaisCaroCategoria(relatorio);
 
     }
     @Test
@@ -51,7 +50,7 @@ public class RelatorioProdutoMaisCaroCategoriaTest {
         List<Pedido> pedidonulo = Collections.emptyList();
         RelatorioProdutoMaisCaroCategoria relatoriovazio = new RelatorioProdutoMaisCaroCategoria(pedidonulo);
         Assertions.assertAll(relatoriovazio::getProdutosMaisCarosCatego);
-        RelatorioProdutoMaisCaroCategoria.imprimirRelatorioDeProdutosMaisCaroCategoria(relatoriovazio);
+        //RelatorioProdutoMaisCaroCategoria.imprimirRelatorioDeProdutosMaisCaroCategoria(relatoriovazio);
 
     }
 
@@ -87,7 +86,7 @@ public class RelatorioProdutoMaisCaroCategoriaTest {
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
         RelatorioProdutoMaisCaroCategoria relatorio = new RelatorioProdutoMaisCaroCategoria(Collections.synchronizedList(listaDePedidos));
         Assertions.assertAll(relatorio::getProdutosMaisCarosCatego);
-        RelatorioProdutoMaisCaroCategoria.imprimirRelatorioDeProdutosMaisCaroCategoria(relatorio);
+        //RelatorioProdutoMaisCaroCategoria.imprimirRelatorioDeProdutosMaisCaroCategoria(relatorio);
     }
 
 
