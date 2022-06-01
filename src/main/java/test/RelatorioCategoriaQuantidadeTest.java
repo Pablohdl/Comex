@@ -56,4 +56,40 @@ public class RelatorioCategoriaQuantidadeTest {
         Assertions.assertAll(relatorio::getVendasPorCategoria);
         RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatorio);
     }
+
+    @Test
+    public void deveGerarRelatorioComTresPedidosDeCategoriaDiferente() {
+        Pedido primeiroPedido = new PedidoBuilder()
+                .comCategoria("INFORMATICA")
+                .comProduto("PC GAMER")
+                .comCliente("SERGIO")
+                .comValor("3333.40")
+                .comQuantidade(3)
+                .comData("25/03/2022")
+                .build();
+
+        Pedido segundoPedido = new PedidoBuilder()
+                .comCategoria("ARTES")
+                .comProduto("QUADRO")
+                .comCliente("DOUGLAS")
+                .comValor("250.99")
+                .comQuantidade(1)
+                .comData("26/03/2022")
+                .build();
+
+        Pedido terceiroPedido = new PedidoBuilder()
+                .comCategoria("ESPORTE")
+                .comProduto("CAMISA DO PSG")
+                .comCliente("DOUGLAS")
+                .comValor("332.00")
+                .comQuantidade(1)
+                .comData("22/05/2022")
+                .build();
+
+
+        List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
+        RelatorioCategoriaQuantidade relatorio = new RelatorioCategoriaQuantidade(Collections.synchronizedList(listaDePedidos));
+        Assertions.assertAll(relatorio::getVendasPorCategoria);
+        RelatorioCategoriaQuantidade.imprimirRelatorioDeCategorias(relatorio);
+    }
 }

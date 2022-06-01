@@ -48,4 +48,42 @@ public class RelatorioClientesMaisLucrativosTest {
         RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(relatorio);
 
     }
+
+    @Test
+    public void gerarRelatorioComDoisPedidosDeClienteDiferente() {
+        Pedido primeiroPedido = new PedidoBuilder()
+                .comCategoria("DECORAÇÃO")
+                .comProduto("QUADRO NEGRO")
+                .comCliente("DOUGLAS")
+                .comValor("312.40")
+                .comQuantidade(1)
+                .comData("25/03/2022")
+                .build();
+
+        Pedido segundoPedido = new PedidoBuilder()
+                .comCategoria("MÚSICA")
+                .comProduto("PANDEIRO")
+                .comCliente("VIVIAN")
+                .comValor("250.99")
+                .comQuantidade(1)
+                .comData("26/03/2022")
+                .build();
+
+        Pedido terceiroPedido = new PedidoBuilder()
+                .comCategoria("ELETRÔNICOS")
+                .comProduto("GAMEBOY")
+                .comCliente("VIVIAN")
+                .comValor("3342.00")
+                .comQuantidade(1)
+                .comData("22/05/2022")
+                .build();
+
+        List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
+        RelatorioClientesMaisLucrativos relatorio = new RelatorioClientesMaisLucrativos(Collections.synchronizedList(listaDePedidos));
+        Assertions.assertAll(relatorio::getClientesLucrativos);
+        RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(relatorio);
+
+    }
+
+
 }
