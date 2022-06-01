@@ -1,17 +1,15 @@
-package test;
+package br.com.alura.comex.relatorio.test;
 
 import br.com.alura.comex.model.Pedido;
 import br.com.alura.comex.model.PedidoBuilder;
-import br.com.alura.comex.relatorios.RelatorioClientesMaisLucrativos;
+import br.com.alura.comex.relatorios.RelatorioClientesFieis;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.Collections;
 import java.util.List;
 
-public class RelatorioClientesMaisLucrativosTest {
-
-
+public class RelatorioClientesFieisTest {
 
     @Test
     public void gerarRelatorioComTresPedidosDoMesmoCliente() {
@@ -43,18 +41,18 @@ public class RelatorioClientesMaisLucrativosTest {
                 .build();
 
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
-        RelatorioClientesMaisLucrativos relatorio = new RelatorioClientesMaisLucrativos(Collections.synchronizedList(listaDePedidos));
-        Assertions.assertAll(relatorio::getClientesLucrativos);
-        RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(relatorio);
+        RelatorioClientesFieis relatorio = new RelatorioClientesFieis(Collections.synchronizedList(listaDePedidos));
+        Assertions.assertAll(relatorio::getClientesFieis);
+        RelatorioClientesFieis.imprimirRelatorioClientesFieis(relatorio);
 
     }
 
     @Test
-    public void gerarRelatorioComDoisPedidosDeClienteDiferente() {
+    public void gerarRelatorioComTresPedidosDeClientesDiferentes() {
         Pedido primeiroPedido = new PedidoBuilder()
                 .comCategoria("DECORAÇÃO")
                 .comProduto("QUADRO NEGRO")
-                .comCliente("DOUGLAS")
+                .comCliente("SERGIO")
                 .comValor("312.40")
                 .comQuantidade(1)
                 .comData("25/03/2022")
@@ -63,7 +61,7 @@ public class RelatorioClientesMaisLucrativosTest {
         Pedido segundoPedido = new PedidoBuilder()
                 .comCategoria("MÚSICA")
                 .comProduto("PANDEIRO")
-                .comCliente("VIVIAN")
+                .comCliente("DOUGLAS")
                 .comValor("250.99")
                 .comQuantidade(1)
                 .comData("26/03/2022")
@@ -72,18 +70,17 @@ public class RelatorioClientesMaisLucrativosTest {
         Pedido terceiroPedido = new PedidoBuilder()
                 .comCategoria("ELETRÔNICOS")
                 .comProduto("GAMEBOY")
-                .comCliente("VIVIAN")
-                .comValor("3342.00")
+                .comCliente("ADRIANO")
+                .comValor("33432.00")
                 .comQuantidade(1)
                 .comData("22/05/2022")
                 .build();
 
         List<Pedido> listaDePedidos = List.of(primeiroPedido, segundoPedido, terceiroPedido);
-        RelatorioClientesMaisLucrativos relatorio = new RelatorioClientesMaisLucrativos(Collections.synchronizedList(listaDePedidos));
-        Assertions.assertAll(relatorio::getClientesLucrativos);
-        RelatorioClientesMaisLucrativos.imprimirRelatorioDeClientesMaisLucrativos(relatorio);
+        RelatorioClientesFieis relatorio = new RelatorioClientesFieis(Collections.synchronizedList(listaDePedidos));
+        Assertions.assertAll(relatorio::getClienteMaisFiel);
+        RelatorioClientesFieis.imprimirRelatorioClientesFieis(relatorio);
 
     }
-
 
 }

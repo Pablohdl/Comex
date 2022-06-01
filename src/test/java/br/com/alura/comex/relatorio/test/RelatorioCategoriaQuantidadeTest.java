@@ -1,4 +1,4 @@
-package test;
+package br.com.alura.comex.relatorio.test;
 
 import br.com.alura.comex.model.Pedido;
 import br.com.alura.comex.model.PedidoBuilder;
