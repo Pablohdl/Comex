@@ -1,78 +1,88 @@
 package br.com.alura.comex.model;
 
-import com.opencsv.bean.CsvBindByName;
+import com.sun.istack.NotNull;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
+@Entity
+@Table(name = "pedidos")
 public class Pedido {
 
-	@CsvBindByName(column = "categoria", required = true)
-    private String categoria;
-    @CsvBindByName(column = "produto", required = true)
-    private String produto;
-    @CsvBindByName(column = "preco", required = true)
-    private BigDecimal preco;
-    @CsvBindByName(column = "quantidade", required = true)
-    private int quantidade;
-    @CsvBindByName(column = "data", required = true)
-    private String data;
-    @CsvBindByName(column = "cliente", required = true)
-    private String cliente;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotNull
+    private LocalDate data = LocalDate.now();
+    @NotNull
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Cliente cliente;
 
+    private BigDecimal desconto;
 
+    @Enumerated(EnumType.STRING)
+    private TipodeDescontoPedido tipoDeDescontoPedido;
+
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<ItemDePedido> listaDePedidos;
+
+    @Deprecated
     public Pedido() {
-        super();
     }
 
-
-    public Pedido(String categoria, String produto, String cliente, BigDecimal preco, int quantidade, String data) {
-        this.categoria = categoria;
-        this.produto = produto;
-        this.cliente = cliente;
-        this.preco = preco;
-        this.quantidade = quantidade;
+    public Pedido(LocalDate data, Cliente cliente, List<ItemDePedido> listaDePedidos) {
         this.data = data;
+        this.cliente = cliente;
+        this.listaDePedidos = listaDePedidos;
     }
 
-
-    public String getCategoria() {
-        return categoria;
+    private Pedido(Long id, LocalDate data, Cliente cliente, BigDecimal desconto, TipodeDescontoPedido tipoDeDescontoPedido) {
+        this.id = id;
+        this.data = data;
+        this.cliente = cliente;
+        this.desconto = desconto;
+        this.tipoDeDescontoPedido = tipoDeDescontoPedido;
     }
 
-    public String getProduto() {
-        return produto;
+    public Long getId() {
+        return id;
     }
 
-    public String getCliente() {
-        return cliente;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public BigDecimal getPreco() {
-        return preco;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido{" +
-                "categoria='" + categoria + '\'' +
-                ", produto='" + produto + '\'' +
-                ", cliente='" + cliente + '\'' +
-                ", preco=" + preco +
-                ", quantidade=" + quantidade +
-                ", data=" + data +
-                '}';
-    }
-     public BigDecimal getValorTotal() {
-    	return getPreco().multiply(new BigDecimal(getQuantidade()));    	 
-    	 	
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    public BigDecimal getDesconto() {
+        return desconto;
+    }
+
+    public void setDesconto(BigDecimal desconto) {
+        this.desconto = desconto;
+    }
+
+    public TipodeDescontoPedido getTipoDeDesconto() {
+        return tipoDeDescontoPedido;
+    }
+
+    public void setTipoDeDesconto(TipodeDescontoPedido tipoDeDescontoPedido) {
+        this.tipoDeDescontoPedido = tipoDeDescontoPedido;
+    }
 }
