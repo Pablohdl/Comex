@@ -1,4 +1,4 @@
-package main;
+package br.com.alura.comex.main;
 
 import br.com.alura.comex.model.Categoria;
 import br.com.alura.comex.model.StatusCategoria;
@@ -30,7 +30,7 @@ public class CategoriaMain {
     private static void inativandoCategoria(EntityManager entityManager) {
         entityManager.getTransaction().begin();
         CategoriaDAO cd = new CategoriaDAO(entityManager);
-        Categoria categoria4 = cd.buscarPorId(10L);
+        Categoria categoria4 = cd.buscarPorId(20L);
         categoria4.setStatus(StatusCategoria.INATIVA);
         entityManager.getTransaction().commit();
         entityManager.close();
@@ -55,8 +55,6 @@ public class CategoriaMain {
 
         entityManager.getTransaction().begin();
         CategoriaDAO cd = new CategoriaDAO(entityManager);
-        Categoria categoria4 = cd.buscarPorId(10L);
-        categoria4.setStatus(StatusCategoria.INATIVA);
         cd.inserirCategoria(categoria1);
         cd.inserirCategoria(categoria2);
         cd.inserirCategoria(categoria3);

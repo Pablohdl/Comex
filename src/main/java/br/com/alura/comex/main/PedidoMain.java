@@ -1,4 +1,4 @@
-package main;
+package br.com.alura.comex.main;
 
 import br.com.alura.comex.relatorio.RelatorioMontanteCategoria;
 import dao.ClienteDAO;
