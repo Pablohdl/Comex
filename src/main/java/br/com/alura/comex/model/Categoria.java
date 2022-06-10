@@ -15,7 +15,7 @@ public class Categoria {
     private String nome;
     @NotNull
     @Enumerated(EnumType.STRING)
-    private StatusCategoria status;
+    private StatusCategoria status  = StatusCategoria.ATIVA;
 
 
 

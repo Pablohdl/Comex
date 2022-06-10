@@ -1,49 +1,42 @@
-package br.com.alura.comex.model;
+package br.com.alura.comex.controller.dto;
 
+import br.com.alura.comex.model.Cliente;
+import br.com.alura.comex.model.ItemDePedido;
+import br.com.alura.comex.model.Pedido;
+import br.com.alura.comex.model.TipodeDescontoPedido;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-@Entity
-@Table(name = "pedidos")
-public class Pedido {
+public class PedidoDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
     private LocalDate data = LocalDate.now();
-    @NotNull
-    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Cliente cliente;
-
     private BigDecimal desconto;
-
-    @Enumerated(EnumType.STRING)
     private TipodeDescontoPedido tipoDeDescontoPedido;
-
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<ItemDePedido> listaDePedidos;
 
-    @Deprecated
-    public Pedido() {
+    public PedidoDto(Pedido pedido) {
+        this.id = pedido.getId();
+        this.data = pedido.getData();
+        this.cliente = pedido.getCliente();
+        this.desconto = pedido.getDesconto();
+        this.tipoDeDescontoPedido = pedido.getTipoDeDesconto();
+        this.listaDePedidos = pedido.getListaDePedidos();
     }
 
-    public Pedido(LocalDate data, Cliente cliente, List<ItemDePedido> listaDePedidos) {
-        this.data = data;
-        this.cliente = cliente;
-        this.listaDePedidos = listaDePedidos;
+    public static List<PedidoDto> converterOp(Optional<Pedido> pedidos) {
+        return pedidos.stream().map(PedidoDto::new).collect(Collectors.toList());
     }
 
-    private Pedido(Long id, LocalDate data, Cliente cliente, BigDecimal desconto, TipodeDescontoPedido tipoDeDescontoPedido) {
-        this.id = id;
-        this.data = data;
-        this.cliente = cliente;
-        this.desconto = desconto;
-        this.tipoDeDescontoPedido = tipoDeDescontoPedido;
+    public static List<PedidoDto> converter(List<Pedido> pedidos) {
+        return pedidos.stream().map(PedidoDto::new).collect(Collectors.toList());
     }
 
     public Long getId() {
@@ -78,11 +71,11 @@ public class Pedido {
         this.desconto = desconto;
     }
 
-    public TipodeDescontoPedido getTipoDeDesconto() {
+    public TipodeDescontoPedido getTipoDeDescontoPedido() {
         return tipoDeDescontoPedido;
     }
 
-    public void setTipoDeDesconto(TipodeDescontoPedido tipoDeDescontoPedido) {
+    public void setTipoDeDescontoPedido(TipodeDescontoPedido tipoDeDescontoPedido) {
         this.tipoDeDescontoPedido = tipoDeDescontoPedido;
     }
 
