@@ -5,6 +5,7 @@ import br.com.alura.comex.controller.dto.ClienteDto;
 import br.com.alura.comex.controller.dto.PedidoDto;
 import br.com.alura.comex.controller.form.ClienteForm;
 import br.com.alura.comex.controller.form.PedidoForm;
+import br.com.alura.comex.model.Categoria;
 import br.com.alura.comex.model.Cliente;
 import br.com.alura.comex.model.Pedido;
 import br.com.alura.comex.repository.PedidoRepository;
@@ -13,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
@@ -45,6 +47,16 @@ public class PedidoController {
 
     }
 
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> deletarPedido(@PathVariable Long id) {
+        Optional<Pedido> optional = pedidoRepository.findById(id);
+        if (optional.isPresent()) {
+            pedidoRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 
 
 

@@ -1,25 +1,26 @@
 package br.com.alura.comex.controller;
 
 
-import br.com.alura.comex.controller.dto.ClienteDto;
+import br.com.alura.comex.controller.dto.ClienteDetalheDto;
+import br.com.alura.comex.controller.dto.ProdutoDetalheDto;
 import br.com.alura.comex.controller.dto.ProdutoDto;
 import br.com.alura.comex.controller.form.AtualizacaoProdutoForm;
-import br.com.alura.comex.controller.form.AtualizarCategoriaStatusForm;
-import br.com.alura.comex.controller.form.CategoriaForm;
 import br.com.alura.comex.controller.form.ProdutoForm;
-import br.com.alura.comex.model.Categoria;
 import br.com.alura.comex.model.Cliente;
 import br.com.alura.comex.model.Produto;
 import br.com.alura.comex.repository.CategoriaRepository;
 import br.com.alura.comex.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
-import java.beans.Transient;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -34,7 +35,7 @@ public class ProdutoController {
     @Autowired
     private CategoriaRepository categoriaRepository;
 
-    @GetMapping
+   /* @GetMapping
     public List<ProdutoDto> lista(Long id) {
         if(id == null) {
             List<Produto> produtos = produtoRepository.findAll();
@@ -43,7 +44,7 @@ public class ProdutoController {
             Optional<Produto> produtos = produtoRepository.findById(id);
             return ProdutoDto.converterOp(produtos);
         }
-    }
+    }*/
 
     @PostMapping
     @Transactional
@@ -78,5 +79,13 @@ public class ProdutoController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<Page<ProdutoDetalheDto>> listarTodos(@RequestParam(defaultValue = "0")int pagina) {
+        Pageable pageable = PageRequest.of(pagina, 5, Sort.by(Sort.Direction.ASC, "nome"));
+        Page<Produto> produtos = produtoRepository.findAll(pageable);
+        Page<ProdutoDetalheDto> produtoDetalheDto = ProdutoDetalheDto.converterPagina(produtos);
+        return ResponseEntity.ok().body(produtoDetalheDto);
     }
 }

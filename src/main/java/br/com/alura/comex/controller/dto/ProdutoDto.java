@@ -16,7 +16,7 @@ public class ProdutoDto {
     private String descricao;
     private BigDecimal precoUnitario;
     private int quantidadeEstoque;
-    private Categoria categoria;
+    private CategoriaDto categoria;
 
     public ProdutoDto(Produto produto) {
         this.id = produto.getId();
@@ -24,7 +24,7 @@ public class ProdutoDto {
         this.descricao = produto.getDescricao() ;
         this.precoUnitario = produto.getPrecoUnitario();
         this.quantidadeEstoque = produto.getQuantidadeEstoque();
-        this.categoria = produto.getCategoria();
+        this.categoria = new CategoriaDto(produto.getCategoria());
     }
 
     public static List<ProdutoDto> converterOp(Optional<Produto> produtos) {
@@ -75,11 +75,11 @@ public class ProdutoDto {
         this.quantidadeEstoque = quantidadeEstoque;
     }
 
-    public Categoria getCategoria() {
+    public CategoriaDto getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(CategoriaDto categoria) {
         this.categoria = categoria;
     }
 }

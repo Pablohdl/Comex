@@ -18,14 +18,10 @@ public class ProdutoForm {
     private String descricao;
     @DecimalMin(value = "0.0", inclusive = false)
     @NotNull
-    @NotEmpty
     private BigDecimal precoUnitario;
     @NotNull
-    @NotEmpty
     private Integer quantidadeEstoque;
-
     @NotNull
-    @NotEmpty
     private Long idCategoria;
 
     public String getNome() {

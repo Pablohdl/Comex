@@ -1,7 +1,7 @@
 package br.com.alura.comex.controller;
 
 
-import br.com.alura.comex.controller.form.AtualizarCategoriaStatusForm;
+import br.com.alura.comex.controller.form.AtualizacaoCategoriaForm;
 import br.com.alura.comex.controller.dto.CategoriaDto;
 import br.com.alura.comex.controller.form.CategoriaForm;
 import br.com.alura.comex.model.Categoria;
@@ -45,15 +45,19 @@ public class CategoriaController {
         return ResponseEntity.created(uri).body(new CategoriaDto(categoria));
     }
 
-
     @PutMapping("/{id}")
-    public ResponseEntity<AtualizarCategoriaStatusForm> inativarCategoria(@PathVariable Long id, @RequestBody @Valid AtualizarCategoriaStatusForm form){
+    @Transactional
+    public ResponseEntity<CategoriaDto> atualizarCategoria(@PathVariable Long id, @RequestBody @Valid AtualizacaoCategoriaForm form) {
         Optional<Categoria> optional = categoriaRepository.findById(id);
-        if (optional.isPresent()) {
-            Categoria categoria = form.atualizar(id,categoriaRepository);
+
+        if (optional.isPresent()){
+            Categoria categoria = form.atualizar(id, categoriaRepository);
+            return ResponseEntity.ok(new CategoriaDto(categoria));
         }
         return ResponseEntity.notFound().build();
+
     }
+
 
     @DeleteMapping("/{id}")
     @Transactional
