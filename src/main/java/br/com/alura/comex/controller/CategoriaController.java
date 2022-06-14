@@ -1,14 +1,19 @@
 package br.com.alura.comex.controller;
 
 
+import br.com.alura.comex.controller.form.AtualizarCategoriaStatusForm;
 import br.com.alura.comex.controller.dto.CategoriaDto;
+import br.com.alura.comex.controller.form.CategoriaForm;
 import br.com.alura.comex.model.Categoria;
 import br.com.alura.comex.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,5 +34,37 @@ public class CategoriaController {
             return CategoriaDto.converterOp(categorias);
         }
     }
+
+
+    @PostMapping
+    public ResponseEntity<CategoriaDto> cadastrarCategoria(@RequestBody @Valid CategoriaForm form, UriComponentsBuilder uriBuilder) {
+       Categoria categoria = form.converter();
+       categoriaRepository.save(categoria);
+
+        URI uri = uriBuilder.path("/categoria/{id}").buildAndExpand(categoria.getId()).toUri();
+        return ResponseEntity.created(uri).body(new CategoriaDto(categoria));
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AtualizarCategoriaStatusForm> inativarCategoria(@PathVariable Long id, @RequestBody @Valid AtualizarCategoriaStatusForm form){
+        Optional<Categoria> optional = categoriaRepository.findById(id);
+        if (optional.isPresent()) {
+            Categoria categoria = form.atualizar(id,categoriaRepository);
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public ResponseEntity<?> deletarCategoria(@PathVariable Long id) {
+        Optional<Categoria> optional = categoriaRepository.findById(id);
+        if (optional.isPresent()) {
+            categoriaRepository.deleteById(id);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
 
 }

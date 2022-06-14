@@ -16,7 +16,7 @@ public class Cliente {
     @NotNull
     private String cpf;
     @NotNull
-    private String Telefone;
+    private String telefone;
     @NotNull
     private String rua;
     @NotNull
@@ -38,17 +38,16 @@ public class Cliente {
 
     }
 
-    public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado,List<Pedido> listaDePedidos) {
+    public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado) {
         this.nome = nome;
         this.cpf = cpf;
-        Telefone = telefone;
+        this.telefone = telefone;
         this.rua = rua;
         this.numero = numero;
         this.complemento = complemento;
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
-        this.listaDePedidos = listaDePedidos;
     }
 
     public Long getId() {
@@ -76,11 +75,11 @@ public class Cliente {
     }
 
     public String getTelefone() {
-        return Telefone;
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
-        Telefone = telefone;
+        this.telefone = telefone;
     }
 
     public String getRua() {
@@ -145,7 +144,7 @@ public class Cliente {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", Telefone='" + Telefone + '\'' +
+                ", Telefone='" + telefone + '\'' +
                 ", rua='" + rua + '\'' +
                 ", numero='" + numero + '\'' +
                 ", complemento='" + complemento + '\'' +
