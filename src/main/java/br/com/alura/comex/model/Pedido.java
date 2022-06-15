@@ -22,6 +22,9 @@ public class Pedido {
 
     private BigDecimal desconto;
 
+    @Column(name = "valor_total")
+    private BigDecimal valorTotal = BigDecimal.ZERO;
+
     @Enumerated(EnumType.STRING)
     private TipodeDescontoPedido tipoDeDescontoPedido;
 
@@ -38,12 +41,14 @@ public class Pedido {
         this.listaDePedidos = listaDePedidos;
     }
 
-    private Pedido(Long id, LocalDate data, Cliente cliente, BigDecimal desconto, TipodeDescontoPedido tipoDeDescontoPedido) {
+    private Pedido(Long id, LocalDate data, Cliente cliente, BigDecimal desconto, BigDecimal valorTotal, TipodeDescontoPedido tipoDeDescontoPedido, List<ItemDePedido> listaDePedidos) {
         this.id = id;
         this.data = data;
         this.cliente = cliente;
         this.desconto = desconto;
+        this.valorTotal = valorTotal;
         this.tipoDeDescontoPedido = tipoDeDescontoPedido;
+        this.listaDePedidos = listaDePedidos;
     }
 
     public Long getId() {
@@ -93,4 +98,13 @@ public class Pedido {
     public void setListaDePedidos(List<ItemDePedido> listaDePedidos) {
         this.listaDePedidos = listaDePedidos;
     }
+
+    public BigDecimal getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(BigDecimal valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
 }
