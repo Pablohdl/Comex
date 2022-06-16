@@ -2,6 +2,7 @@ package br.com.alura.comex.controller;
 
 
 import br.com.alura.comex.controller.dto.ClienteDetalheDto;
+import br.com.alura.comex.controller.dto.ClienteDto;
 import br.com.alura.comex.controller.dto.ProdutoDetalheDto;
 import br.com.alura.comex.controller.dto.ProdutoDto;
 import br.com.alura.comex.controller.form.AtualizacaoProdutoForm;
@@ -34,17 +35,6 @@ public class ProdutoController {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
-
-   /* @GetMapping
-    public List<ProdutoDto> lista(Long id) {
-        if(id == null) {
-            List<Produto> produtos = produtoRepository.findAll();
-            return ProdutoDto.converter(produtos);
-        } else {
-            Optional<Produto> produtos = produtoRepository.findById(id);
-            return ProdutoDto.converterOp(produtos);
-        }
-    }*/
 
     @PostMapping
     @Transactional
@@ -87,5 +77,13 @@ public class ProdutoController {
         Page<Produto> produtos = produtoRepository.findAll(pageable);
         Page<ProdutoDetalheDto> produtoDetalheDto = ProdutoDetalheDto.converterPagina(produtos);
         return ResponseEntity.ok().body(produtoDetalheDto);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProdutoDto> encontrarPorId(@PathVariable Long id) {
+        Optional<Produto> produto = produtoRepository.findById(id);
+        if (produto.isPresent())
+            return ResponseEntity.ok(new ProdutoDto(produto.get()));
+        return ResponseEntity.notFound().build();
     }
 }

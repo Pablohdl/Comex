@@ -58,6 +58,14 @@ public class PedidoController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<PedidoDto> encontrarPorId(@PathVariable Long id) {
+        Optional<Pedido> pedido = pedidoRepository.findById(id);
+        if (pedido.isPresent())
+            return ResponseEntity.ok(new PedidoDto(pedido.get()));
+        return ResponseEntity.notFound().build();
+    }
+
 
 
 }

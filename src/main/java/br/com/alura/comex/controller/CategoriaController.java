@@ -1,11 +1,13 @@
 package br.com.alura.comex.controller;
 
 
+import br.com.alura.comex.controller.dto.ClienteDto;
 import br.com.alura.comex.controller.dto.RelatorioPedidosPorCategoriaProjection;
 import br.com.alura.comex.controller.form.AtualizacaoCategoriaForm;
 import br.com.alura.comex.controller.dto.CategoriaDto;
 import br.com.alura.comex.controller.form.CategoriaForm;
 import br.com.alura.comex.model.Categoria;
+import br.com.alura.comex.model.Cliente;
 import br.com.alura.comex.repository.CategoriaRepository;
 import br.com.alura.comex.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +83,12 @@ public class CategoriaController {
         return lista;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoriaDto> encontrarPorId(@PathVariable Long id) {
+        Optional<Categoria> categoria = categoriaRepository.findById(id);
+        if (categoria.isPresent())
+            return ResponseEntity.ok(new CategoriaDto(categoria.get()));
+        return ResponseEntity.notFound().build();
+    }
 
 }
