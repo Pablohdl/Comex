@@ -32,6 +32,8 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> listaDePedidos;
+    @OneToOne(cascade = CascadeType.ALL)
+    private Usuario usuario;
 
     @Deprecated
     protected Cliente() {
@@ -136,6 +138,14 @@ public class Cliente {
 
     public void setListaDePedidos(List<Pedido> listaDePedidos) {
         this.listaDePedidos = listaDePedidos;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override

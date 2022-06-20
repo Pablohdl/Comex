@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
-    @Query(value = "SELECT c.nome AS categoria, SUM(i.quantidade) AS quantidadeProdutos, SUM(pedidos.valor_total) AS montantePedido " +
+    @Query(value = "SELECT c.nome AS categoria, SUM(i.quantidade) AS quantidadeProdutos, SUM((i.preco_unitario * i.quantidade)) AS montantePedido " +
             "FROM pedidos " +
             "JOIN itens_de_pedidos i " +
             "JOIN produtos p " +

@@ -11,6 +11,8 @@ import br.com.alura.comex.model.Cliente;
 import br.com.alura.comex.repository.CategoriaRepository;
 import br.com.alura.comex.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -44,6 +46,7 @@ public class CategoriaController {
 
 
     @PostMapping
+    @CacheEvict(value = "relatorioDePedidos",allEntries = true)
     public ResponseEntity<CategoriaDto> cadastrarCategoria(@RequestBody @Valid CategoriaForm form, UriComponentsBuilder uriBuilder) {
        Categoria categoria = form.converter();
        categoriaRepository.save(categoria);
@@ -54,6 +57,7 @@ public class CategoriaController {
 
     @PutMapping("/{id}")
     @Transactional
+    @CacheEvict(value = "relatorioDePedidos",allEntries = true)
     public ResponseEntity<CategoriaDto> atualizarCategoria(@PathVariable Long id, @RequestBody @Valid AtualizacaoCategoriaForm form) {
         Optional<Categoria> optional = categoriaRepository.findById(id);
 
@@ -68,6 +72,7 @@ public class CategoriaController {
 
     @DeleteMapping("/{id}")
     @Transactional
+    @CacheEvict(value = "relatorioDePedidos",allEntries = true)
     public ResponseEntity<?> deletarCategoria(@PathVariable Long id) {
         Optional<Categoria> optional = categoriaRepository.findById(id);
         if (optional.isPresent()) {
@@ -78,6 +83,7 @@ public class CategoriaController {
     }
 
     @GetMapping("/pedidos")
+    @Cacheable(value = "relatorioDePedidos")
     public List<RelatorioPedidosPorCategoriaProjection> mostrarPedidosPorCategoria() {
         List<RelatorioPedidosPorCategoriaProjection> lista = pedidoRepository.findPedidosPorCategoria();
         return lista;
