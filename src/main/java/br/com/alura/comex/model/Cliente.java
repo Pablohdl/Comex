@@ -32,7 +32,7 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente")
     private List<Pedido> listaDePedidos;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(optional = false, mappedBy = "cliente")
     private Usuario usuario;
 
     @Deprecated
@@ -40,6 +40,18 @@ public class Cliente {
 
     }
 
+    public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado,List<Pedido> listaDePedidos) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.rua = rua;
+        this.numero = numero;
+        this.complemento = complemento;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.listaDePedidos = listaDePedidos;
+    }
     public Cliente(String nome, String cpf, String telefone, String rua, String numero, String complemento, String bairro, String cidade, String estado) {
         this.nome = nome;
         this.cpf = cpf;
@@ -50,6 +62,7 @@ public class Cliente {
         this.bairro = bairro;
         this.cidade = cidade;
         this.estado = estado;
+
     }
 
     public Long getId() {

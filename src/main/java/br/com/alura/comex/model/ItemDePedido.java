@@ -40,6 +40,13 @@ public class ItemDePedido {
         this.desconto = desconto;
         this.tipoDeDescontoItem = tipoDeDescontoItem;
     }
+    public ItemDePedido(BigDecimal precoUnitario, Integer quantidade, Produto produto, BigDecimal desconto, TipodeDescontoItem tipoDeDescontoItem) {
+        this.precoUnitario = precoUnitario;
+        this.quantidade = quantidade;
+        this.produto = produto;
+        this.desconto = desconto;
+        this.tipoDeDescontoItem = tipoDeDescontoItem;
+    }
 
     public Long getId() {
         return id;

@@ -46,7 +46,6 @@ public class CategoriaController {
 
 
     @PostMapping
-    @CacheEvict(value = "relatorioDePedidos",allEntries = true)
     public ResponseEntity<CategoriaDto> cadastrarCategoria(@RequestBody @Valid CategoriaForm form, UriComponentsBuilder uriBuilder) {
        Categoria categoria = form.converter();
        categoriaRepository.save(categoria);
@@ -57,7 +56,6 @@ public class CategoriaController {
 
     @PutMapping("/{id}")
     @Transactional
-    @CacheEvict(value = "relatorioDePedidos",allEntries = true)
     public ResponseEntity<CategoriaDto> atualizarCategoria(@PathVariable Long id, @RequestBody @Valid AtualizacaoCategoriaForm form) {
         Optional<Categoria> optional = categoriaRepository.findById(id);
 
@@ -72,7 +70,6 @@ public class CategoriaController {
 
     @DeleteMapping("/{id}")
     @Transactional
-    @CacheEvict(value = "relatorioDePedidos",allEntries = true)
     public ResponseEntity<?> deletarCategoria(@PathVariable Long id) {
         Optional<Categoria> optional = categoriaRepository.findById(id);
         if (optional.isPresent()) {

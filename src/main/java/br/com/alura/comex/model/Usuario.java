@@ -15,9 +15,11 @@ public class Usuario  implements UserDetails {
     private static final long serialVersionUID = 1L;
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String senha;
-    @OneToOne(mappedBy = "usuario")
+    @OneToOne(optional = false, cascade = CascadeType.ALL)
     private Cliente cliente;
 
     @ManyToMany(fetch = FetchType.EAGER)

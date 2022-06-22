@@ -29,6 +29,10 @@ public class Categoria {
         this.status = status;
     }
 
+    public Categoria(String nome, StatusCategoria status) {
+        this.nome = nome;
+        this.status = status;
+    }
     public Categoria(String nome) {
         this.nome = nome;
     }

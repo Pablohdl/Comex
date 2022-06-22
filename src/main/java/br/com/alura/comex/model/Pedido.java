@@ -35,6 +35,13 @@ public class Pedido {
     public Pedido() {
     }
 
+    public Pedido(LocalDate data, Cliente cliente, BigDecimal desconto, TipodeDescontoPedido tipoDesconto, List<ItemDePedido> listaDePedidos) {
+        this.data = data;
+        this.cliente = cliente;
+        this.desconto = desconto;
+        this.tipoDeDescontoPedido = tipoDeDescontoPedido;
+        this.listaDePedidos = listaDePedidos;
+    }
     public Pedido(LocalDate data, Cliente cliente, List<ItemDePedido> listaDePedidos) {
         this.data = data;
         this.cliente = cliente;

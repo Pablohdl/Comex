@@ -14,6 +14,8 @@ import java.util.Optional;
 @Service
 public class AutenticacaoService implements UserDetailsService {
 
+
+
     @Autowired
     private UsuarioRepository repository;
     @Override
