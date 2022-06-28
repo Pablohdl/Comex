@@ -47,7 +47,7 @@ public class ProdutoController {
     }
 
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @Transactional
     public ResponseEntity<ProdutoDto> atualizarProduto(@PathVariable Long id, @RequestBody @Valid AtualizacaoProdutoForm form) {
         Optional<Produto> optional = produtoRepository.findById(id);

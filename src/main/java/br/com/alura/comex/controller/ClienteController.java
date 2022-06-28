@@ -46,7 +46,7 @@ public class ClienteController {
 
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @Transactional
     public ResponseEntity<ClienteDto> atualizarCliente(@PathVariable Long id, @RequestBody @Valid AtualizacaoClienteForm form) {
         Cliente cliente = form.atualizar(id,clienteRepository);

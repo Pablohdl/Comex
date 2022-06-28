@@ -1,17 +1,14 @@
 package br.com.alura.comex.controller;
 
 
-import br.com.alura.comex.controller.dto.ClienteDto;
 import br.com.alura.comex.controller.dto.RelatorioPedidosPorCategoriaProjection;
-import br.com.alura.comex.controller.form.AtualizacaoCategoriaForm;
 import br.com.alura.comex.controller.dto.CategoriaDto;
+import br.com.alura.comex.controller.form.AtualizarStatusForm;
 import br.com.alura.comex.controller.form.CategoriaForm;
 import br.com.alura.comex.model.Categoria;
-import br.com.alura.comex.model.Cliente;
 import br.com.alura.comex.repository.CategoriaRepository;
 import br.com.alura.comex.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,17 +51,15 @@ public class CategoriaController {
         return ResponseEntity.created(uri).body(new CategoriaDto(categoria));
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     @Transactional
-    public ResponseEntity<CategoriaDto> atualizarCategoria(@PathVariable Long id, @RequestBody @Valid AtualizacaoCategoriaForm form) {
+    public ResponseEntity<CategoriaDto> atualizarStatusCategoria(@PathVariable Long id, @Valid AtualizarStatusForm form) {
         Optional<Categoria> optional = categoriaRepository.findById(id);
-
-        if (optional.isPresent()){
-            Categoria categoria = form.atualizar(id, categoriaRepository);
+        if (optional.isPresent()) {
+            Categoria categoria = form.atualizarStatus(id, categoriaRepository);
             return ResponseEntity.ok(new CategoriaDto(categoria));
         }
         return ResponseEntity.notFound().build();
-
     }
 
 
@@ -82,7 +77,7 @@ public class CategoriaController {
     @GetMapping("/pedidos")
     @Cacheable(value = "relatorioDePedidos")
     public List<RelatorioPedidosPorCategoriaProjection> mostrarPedidosPorCategoria() {
-        List<RelatorioPedidosPorCategoriaProjection> lista = pedidoRepository.findPedidosPorCategoria();
+        List<RelatorioPedidosPorCategoriaProjection> lista = categoriaRepository.findPedidosPorCategoria();
         return lista;
     }
 
