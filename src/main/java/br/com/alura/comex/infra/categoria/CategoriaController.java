@@ -1,13 +1,13 @@
-package br.com.alura.comex.controller;
+package br.com.alura.comex.infra.categoria;
 
 
-import br.com.alura.comex.controller.dto.RelatorioPedidosPorCategoriaProjection;
-import br.com.alura.comex.controller.dto.CategoriaDto;
-import br.com.alura.comex.controller.form.AtualizarStatusForm;
-import br.com.alura.comex.controller.form.CategoriaForm;
+import br.com.alura.comex.infra.categoria.RelatorioPedidosPorCategoriaProjection;
+import br.com.alura.comex.infra.categoria.CategoriaDto;
+import br.com.alura.comex.infra.categoria.AtualizarStatusForm;
+import br.com.alura.comex.infra.categoria.CategoriaForm;
 import br.com.alura.comex.domain.categoria.Categoria;
-import br.com.alura.comex.repository.CategoriaRepository;
-import br.com.alura.comex.repository.PedidoRepository;
+import br.com.alura.comex.infra.categoria.CategoriaRepository;
+import br.com.alura.comex.infra.pedido.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;

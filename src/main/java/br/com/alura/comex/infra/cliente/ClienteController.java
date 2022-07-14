@@ -1,11 +1,7 @@
-package br.com.alura.comex.controller;
+package br.com.alura.comex.infra.cliente;
 
-import br.com.alura.comex.controller.dto.ClienteDetalheDto;
-import br.com.alura.comex.controller.dto.ClienteDto;
-import br.com.alura.comex.controller.form.AtualizacaoClienteForm;
-import br.com.alura.comex.controller.form.ClienteForm;
+import br.com.alura.comex.infra.cliente.AtualizacaoClienteForm;
 import br.com.alura.comex.domain.cliente.Cliente;
-import br.com.alura.comex.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

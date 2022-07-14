@@ -1,7 +1,7 @@
-package br.com.alura.comex.controller;
+package br.com.alura.comex.infra.cache;
 
-import br.com.alura.comex.controller.dto.RelatorioPedidosPorCategoriaProjection;
-import br.com.alura.comex.repository.PedidoRepository;
+import br.com.alura.comex.infra.categoria.RelatorioPedidosPorCategoriaProjection;
+import br.com.alura.comex.infra.pedido.PedidoRepository;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;

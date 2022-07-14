@@ -1,4 +1,4 @@
-package br.com.alura.comex.controller.form;
+package br.com.alura.comex.infra.cliente;
 
 import br.com.alura.comex.domain.cliente.Cliente;
 import org.hibernate.validator.constraints.Length;

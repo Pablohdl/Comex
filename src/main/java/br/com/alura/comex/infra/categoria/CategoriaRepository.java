@@ -1,6 +1,6 @@
-package br.com.alura.comex.repository;
+package br.com.alura.comex.infra.categoria;
 
-import br.com.alura.comex.controller.dto.RelatorioPedidosPorCategoriaProjection;
+import br.com.alura.comex.infra.categoria.RelatorioPedidosPorCategoriaProjection;
 import br.com.alura.comex.domain.categoria.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

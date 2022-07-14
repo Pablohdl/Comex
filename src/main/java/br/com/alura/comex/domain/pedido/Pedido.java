@@ -1,8 +1,8 @@
-package br.com.alura.comex.infra.pedido;
+package br.com.alura.comex.domain.pedido;
 
-import br.com.alura.comex.infra.cliente.Cliente;
-import br.com.alura.comex.infra.itemDePedido.ItemDePedido;
-import br.com.alura.comex.infra.enun.TipodeDescontoPedido;
+import br.com.alura.comex.domain.cliente.Cliente;
+import br.com.alura.comex.domain.itemDePedido.ItemDePedido;
+import br.com.alura.comex.domain.enun.TipodeDescontoPedido;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;

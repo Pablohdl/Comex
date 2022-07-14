@@ -1,7 +1,7 @@
-package br.com.alura.comex.controller.form;
+package br.com.alura.comex.infra.cliente;
 
 import br.com.alura.comex.domain.cliente.Cliente;
-import br.com.alura.comex.repository.ClienteRepository;
+import br.com.alura.comex.infra.cliente.ClienteRepository;
 
 public class AtualizacaoClienteForm {
 

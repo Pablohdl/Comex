@@ -1,4 +1,4 @@
-package br.com.alura.comex.config.validacao;
+package br.com.alura.comex.aplicacao.validacao;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

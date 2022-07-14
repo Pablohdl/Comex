@@ -1,6 +1,6 @@
-package br.com.alura.comex.infra.categoria;
+package br.com.alura.comex.domain.categoria;
 
-import br.com.alura.comex.infra.enun.StatusCategoria;
+import br.com.alura.comex.domain.enun.StatusCategoria;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;

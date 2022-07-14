@@ -1,4 +1,4 @@
-package br.com.alura.comex.repository;
+package br.com.alura.comex.infra.produto;
 
 
 import br.com.alura.comex.domain.produto.Produto;

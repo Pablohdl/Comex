@@ -1,7 +1,7 @@
-package br.com.alura.comex.controller.form;
+package br.com.alura.comex.infra.produto;
 
 import br.com.alura.comex.domain.produto.Produto;
-import br.com.alura.comex.repository.ProdutoRepository;
+import br.com.alura.comex.infra.produto.ProdutoRepository;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;

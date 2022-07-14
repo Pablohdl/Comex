@@ -1,7 +1,7 @@
-package br.com.alura.comex.infra.cliente;
+package br.com.alura.comex.domain.cliente;
 
-import br.com.alura.comex.infra.pedido.Pedido;
-import br.com.alura.comex.infra.usuario.Usuario;
+import br.com.alura.comex.domain.pedido.Pedido;
+import br.com.alura.comex.domain.usuario.Usuario;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;

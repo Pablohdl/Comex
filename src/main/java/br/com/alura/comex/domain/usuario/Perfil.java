@@ -1,4 +1,4 @@
-package br.com.alura.comex.infra.usuario;
+package br.com.alura.comex.domain.usuario;
 
 import org.springframework.security.core.GrantedAuthority;
 

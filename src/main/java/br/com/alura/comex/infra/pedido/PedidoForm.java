@@ -1,4 +1,4 @@
-package br.com.alura.comex.controller.form;
+package br.com.alura.comex.infra.pedido;
 
 import br.com.alura.comex.domain.pedido.Pedido;
 import br.com.alura.comex.domain.enun.TipodeDescontoPedido;

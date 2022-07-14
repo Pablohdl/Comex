@@ -1,4 +1,4 @@
-package br.com.alura.comex.controller.dto;
+package br.com.alura.comex.infra.categoria;
 
 import java.math.BigDecimal;
 

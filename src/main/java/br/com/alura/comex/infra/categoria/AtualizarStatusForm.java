@@ -1,8 +1,8 @@
-package br.com.alura.comex.controller.form;
+package br.com.alura.comex.infra.categoria;
 
 import br.com.alura.comex.domain.categoria.Categoria;
 import br.com.alura.comex.domain.enun.StatusCategoria;
-import br.com.alura.comex.repository.CategoriaRepository;
+import br.com.alura.comex.infra.categoria.CategoriaRepository;
 
 public class AtualizarStatusForm {
 

@@ -1,7 +1,7 @@
-package br.com.alura.comex.infra.produto;
+package br.com.alura.comex.domain.produto;
 
 
-import br.com.alura.comex.infra.categoria.Categoria;
+import br.com.alura.comex.domain.categoria.Categoria;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

@@ -1,6 +1,7 @@
-package br.com.alura.comex.controller.dto;
+package br.com.alura.comex.infra.produto;
 
 import br.com.alura.comex.domain.produto.Produto;
+import br.com.alura.comex.infra.categoria.CategoriaDto;
 
 import java.math.BigDecimal;
 import java.util.List;

@@ -1,4 +1,4 @@
-package br.com.alura.comex.config.security;
+package br.com.alura.comex.aplicacao.user;
 
 import br.com.alura.comex.domain.usuario.Usuario;
 import io.jsonwebtoken.Claims;

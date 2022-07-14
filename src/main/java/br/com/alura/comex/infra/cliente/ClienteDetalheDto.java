@@ -1,4 +1,4 @@
-package br.com.alura.comex.controller.dto;
+package br.com.alura.comex.infra.cliente;
 
 import br.com.alura.comex.domain.cliente.Cliente;
 import org.springframework.data.domain.Page;

@@ -1,7 +1,7 @@
-package br.com.alura.comex.infra.usuario;
+package br.com.alura.comex.domain.usuario;
 
 
-import br.com.alura.comex.infra.cliente.Cliente;
+import br.com.alura.comex.domain.cliente.Cliente;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

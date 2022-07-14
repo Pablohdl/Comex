@@ -1,4 +1,4 @@
-package br.com.alura.comex.controller.form;
+package br.com.alura.comex.infra.usuario;
 
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 

@@ -1,8 +1,8 @@
-package br.com.alura.comex.controller.form;
+package br.com.alura.comex.infra.produto;
 
 import br.com.alura.comex.domain.categoria.Categoria;
 import br.com.alura.comex.domain.produto.Produto;
-import br.com.alura.comex.repository.CategoriaRepository;
+import br.com.alura.comex.infra.categoria.CategoriaRepository;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;

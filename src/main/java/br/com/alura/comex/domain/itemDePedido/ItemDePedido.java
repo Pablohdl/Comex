@@ -1,8 +1,8 @@
-package br.com.alura.comex.infra.itemDePedido;
+package br.com.alura.comex.domain.itemDePedido;
 
-import br.com.alura.comex.infra.enun.TipodeDescontoItem;
-import br.com.alura.comex.infra.pedido.Pedido;
-import br.com.alura.comex.infra.produto.Produto;
+import br.com.alura.comex.domain.enun.TipodeDescontoItem;
+import br.com.alura.comex.domain.pedido.Pedido;
+import br.com.alura.comex.domain.produto.Produto;
 
 import javax.persistence.*;
 import java.math.BigDecimal;

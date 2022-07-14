@@ -1,4 +1,4 @@
-package br.com.alura.comex.infra.enun;
+package br.com.alura.comex.domain.enun;
 
 public enum StatusCategoria {
 

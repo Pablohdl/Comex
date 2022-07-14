@@ -1,4 +1,4 @@
-package br.com.alura.comex.controller;
+package br.com.alura.comex.infra.usuario;
 
 
 import br.com.alura.comex.aplicacao.user.TokenService;

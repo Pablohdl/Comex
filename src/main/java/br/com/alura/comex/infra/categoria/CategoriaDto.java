@@ -1,4 +1,4 @@
-package br.com.alura.comex.controller.dto;
+package br.com.alura.comex.infra.categoria;
 
 import br.com.alura.comex.domain.categoria.Categoria;
 import br.com.alura.comex.domain.enun.StatusCategoria;

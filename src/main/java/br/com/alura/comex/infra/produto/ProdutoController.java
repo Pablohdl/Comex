@@ -1,13 +1,13 @@
-package br.com.alura.comex.controller;
+package br.com.alura.comex.infra.produto;
 
 
-import br.com.alura.comex.controller.dto.ProdutoDetalheDto;
-import br.com.alura.comex.controller.dto.ProdutoDto;
-import br.com.alura.comex.controller.form.AtualizacaoProdutoForm;
-import br.com.alura.comex.controller.form.ProdutoForm;
+import br.com.alura.comex.infra.produto.ProdutoDetalheDto;
+import br.com.alura.comex.infra.produto.ProdutoDto;
+import br.com.alura.comex.infra.produto.AtualizacaoProdutoForm;
+import br.com.alura.comex.infra.produto.ProdutoForm;
 import br.com.alura.comex.domain.produto.Produto;
-import br.com.alura.comex.repository.CategoriaRepository;
-import br.com.alura.comex.repository.ProdutoRepository;
+import br.com.alura.comex.infra.categoria.CategoriaRepository;
+import br.com.alura.comex.infra.produto.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

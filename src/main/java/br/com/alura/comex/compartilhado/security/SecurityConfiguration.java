@@ -1,4 +1,4 @@
-package br.com.alura.comex.config.security;
+package br.com.alura.comex.compartilhado.security;
 
 
 import br.com.alura.comex.aplicacao.user.AutenticacaoService;

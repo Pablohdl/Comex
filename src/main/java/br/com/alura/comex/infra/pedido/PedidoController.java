@@ -1,10 +1,7 @@
-package br.com.alura.comex.controller;
+package br.com.alura.comex.infra.pedido;
 
 
-import br.com.alura.comex.controller.dto.PedidoDto;
-import br.com.alura.comex.controller.form.PedidoForm;
 import br.com.alura.comex.domain.pedido.Pedido;
-import br.com.alura.comex.repository.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
