@@ -1,12 +1,13 @@
-### Reflita: o código melhorou? Se sim, em qual aspecto? Se não, qual a raiz do problema? 
+### Comex
 
-Acredito que a organização do código melhorou um pouco,mas achei essa arquitetura um pouco confusa, e talvez em um projeto grande pode ser prejudicial no entedimento dos desenvolvedor, pois com essa arquitetura o cliente consegue entender do que se trata a aplicação em pouco tempo,mas para um desenvolvedor vai acabar sendo mais trabalhoso pois tem muito código que talvez nao seja necessario, deixando assim o projeto maior do que deveria ser.
+### Lidando com Pagamentos.
 
-### DDD
+### 1.Você criará um serviço separado ou fará no seu projeto atual?
+    O serviço sera separado, pois houve a separação entre loja e estoque,entao por isso o processo de lidar com pagamentos deve ser um serviço único,pois caso haja problema será separado dos pedidos.
+### 2.O Banco de Dados será separado ou será o mesmo do seu projeto atual??
+    O banco de dados será separado, para que o fluxo de pagamento seja diferente do de pedido.
+### 3.Você precisará de um API Gateway? Se sim, quais as responsabilidades dessa peça da sua arquitetura?
+    Sim, o API Gateway é muito importante pra questão de segurança da aplicação, pois é sempre necessário uma autenticação para o serviço requisitado.
+### 4.O sistema de notas fiscais será um projeto separado do de pagamentos ou os times serão unidos?
+    O sistema de notas fiscais sera separado da de pagamentos, pois a geração de nota fiscal vai ocorrer de forma assincrona, e se caso houver algum problema na geração da nota fiscal, não vai atrapalhar o funcionamento de pedidos e nem de pagamentos.
 
-### 1.Quais padrões táticos do DDD cada classe implementa?
-    As classes possuem linguagem ubíqua, deixando assim mais claro o entendimento para futuros clientes.
-### 2.Quais os agregados da aplicação, qual sua raiz e que classes os compõem?
-    A classe de perfil depende do agregado Usuario para o funcionamento.
-### 3.Quais contextos delimitados existem?
-    Acredito que a classe pedido é o maior exemplo,pois possuem metodos de inserir,alterar,deletar e o principal contexto é que esses pedidos são feitos por Clientes, então a classe pedidos está altamente conectada com a classe de clientes.
